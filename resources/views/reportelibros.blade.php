@@ -6,6 +6,10 @@
 <div class="container">
     <h1><center>Reporte de Libros</center></h1>
     <br>
+    @if(Session::has('mensaje'))
+    <div class="alert alert-success">{{Session::get('mensaje')}}</div>
+    @endif
+    
     <span class="float-right">
         <a href="{{route('altalibro')}}">
             <button type="button" class="btn btn-primary">Alta de libro</button>
@@ -34,7 +38,9 @@
                 <td>{{$c->gen}}</td>
                 <td>{{$c->foto}}</td>
                 <td>
-                    <button type="button" class="btn btn-warning">Editar</button>
+                    <a href="{{route('modificalibro',['idlibro'=>$c->idlibro])}}">
+                        <button type="button" class="btn btn-warning">Editar</button>
+                    </a>
                     @if($c->deleted_at)
                     <a href="{{route('activarlibro',['idlibro'=>$c->idlibro])}}">
                         <button type="button" class="btn btn-success">activar</button>

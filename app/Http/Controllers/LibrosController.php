@@ -6,31 +6,94 @@ use Illuminate\Http\Request;
 use App\Models\subgeneros;
 use App\Models\generos;
 use App\Models\libros;
+use Session;
 
 class LibrosController extends Controller
 {
     // 
+    public function modificalibro($idlibro){
+        $consulta=libros::withTrashed()->join('generos','libros.idgen','=','generos.idgen')
+        ->select('libros.idlibro','libros.nombre','libros.autor','libros.paginas',
+        'libros.fechap','libros.idioma','libros.disponibilidad','libros.sinopsis','libros.precio',
+        'generos.genero as gen','libros.archivo','libros.foto')
+        ->where('idlibro',$idlibro)
+        ->get();
+        $consulta2=libros::withTrashed()->join('subgeneros','libros.idsubgen','=','subgeneros.idsubgen')
+        ->select('libros.idlibro','subgeneros.subgenero as subgen')
+        ->where('idlibro',$idlibro)
+        ->get();
+        $generos =generos::orderBy('genero')->get();
+        $subgeneros =subgeneros::orderBy('subgenero')->get();
+        return view('modificalibro')
+        ->with('consulta',$consulta[0])
+        ->with('consulta2',$consulta2[0])
+        ->with('generos',$generos)
+        ->with('subgeneros',$subgeneros);
+    }
+    public function guardacambiosL(Request $request){
+        $this->validate($request,[
+            'nombre' => 'required|regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú,ñ,Ñ,Á,É,Í,Ó,Ú,ü, ]+$/',
+            'autor' => 'required|regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú,ñ,Ñ,Á,É,Í,Ó,Ú,ü, ]+$/',
+            'paginas' => 'required|integer',
+            'fechap' => 'required',
+            'sinopsis' => 'required|regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú,ñ,Ñ,Á,É,Í,Ó,Ú,ü,.,-,_,¿,?, ]+$/',
+            'precio' => 'required|regex:/^[0-9]+[.][0-9]{2}$/',
+            'archivo' => 'required',
+            'foto' => 'required|',
+        ]);
+        $libros = libros::withTrashed()->find($request->idlibro);
+        $libros->idlibro = $request->idlibro;
+        $libros->nombre =$request->nombre;
+        $libros->autor =$request->autor;
+        $libros->paginas =$request->paginas;
+        $libros->fechap =$request->fechap;
+        $libros->idioma=$request->idioma;
+        $libros->sinopsis =$request->sinopsis;
+        $libros->idgen=$request->idgen;
+        $libros->idsubgen=$request->idsubgen;
+        $libros->archivo=$request->archivo;
+        $libros->precio=$request->precio;
+        $libros->disponibilidad =$request->disponibilidad;
+        $libros->foto =$request->foto;
+        $libros->save();
+        /*
+        return view('mensajesl')
+            ->with('proceso',"MODIFICACIÓN DE LIBROS")
+            ->with('mensaje',"El libro $request->nombre ha sido modificado correctamente")
+            ->with('error',1);
+        */
+        Session::flash('mensaje',"El libro $request->nombre ha sido modificado correctamente");
+        return redirect()->route('reportelibros');
+
+    }
+
     public function borrarlibro($idlibro){
         $libros=libros::withTrashed()->find($idlibro)->forceDelete();
-        return view('mensajesl')
+        /*return view('mensajesl')
             ->with('proceso',"BORRAR LIBRO")
             ->with('mensaje',"El libro ha sido borrado del sistema correctamente")
-            ->with('error',1);
+            ->with('error',1); */
+        Session::flash('mensaje',"El libro ha sido borrado del sistema correctamente");
+        return redirect()->route('reportelibros');
     }
     public function activarlibro($idlibro){
         $libros=libros::withTrashed()->where('idlibro',$idlibro)->restore();
-        return view('mensajesl')
+        /*return view('mensajesl')
             ->with('proceso',"ACTIVAR LIBRO")
             ->with('mensaje',"El libro ha sido activado correctamente")
-            ->with('error',1);
+            ->with('error',1); */
+        Session::flash('mensaje',"El libro ha sido activado correctamente");
+        return redirect()->route('reportelibros');
     }
     public function desactivalibro($idlibro){
         $libros=libros::find($idlibro);
         $libros->delete();
-        return view('mensajesl')
+        /*return view('mensajesl')
             ->with('proceso',"DESACTIVAR LIBRO")
             ->with('mensaje',"El libro ha sido desactivado correctamente")
-            ->with('error',1);
+            ->with('error',1); */
+        Session::flash('mensaje',"El libro ha sido desactivado correctamente");
+        return redirect()->route('reportelibros');
     }
     public function altalibro() {
         $consulta=libros::withTrashed()->OrderBy('idlibro','DESC')->take(1)->get();
@@ -76,10 +139,12 @@ class LibrosController extends Controller
         $libros->disponibilidad =$request->disponibilidad;
         $libros->foto =$request->foto;
         $libros->save();
-        return view('mensajesl')
+        /*return view('mensajesl')
             ->with('proceso',"ALTA DE LIBROS")
-            ->with('mensaje',"El libro $request->nombre ha sido dado de alta correctamente");
-        
+            ->with('mensaje',"El libro $request->nombre ha sido dado de alta correctamente")
+            ->with('error',1); */
+        Session::flash('mensaje',"El libro $request->nombre ha sido dado de alta correctamente");
+        return redirect()->route('reportelibros');
     }
 
     public function reportelibros(){
@@ -90,10 +155,7 @@ class LibrosController extends Controller
         ->get();
         return view('reportelibros')->with('consulta',$consulta);
     }
-    public function editarlibro($idlibro)
-    {
-        return view('editarlibro');
-    }
+
     public function eloquent(){
         //$consulta = libros::all();
         //return $consulta;
@@ -149,11 +211,11 @@ class LibrosController extends Controller
         ->get();
         $cuantos = count($consulta); */
 
-        $consulta=libros::join('generos','libros.idgen','=','generos.idgen')
+       /* $consulta=libros::join('generos','libros.idgen','=','generos.idgen')
         ->select('libros.nombre as Titulo','libros.autor','generos.genero as genero','libros.idsubgen')
         ->where('libros.idgen','=',1)
         ->orwhere('idsubgen',1)
         ->get();
-        return $consulta;
+        return $consulta; */
     }
 }

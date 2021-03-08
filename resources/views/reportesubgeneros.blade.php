@@ -6,6 +6,9 @@
 <div class="container">
     <h1><center>Reporte de Subgéneros</center></h1>
     <br>
+    @if(Session::has('mensaje'))
+    <div class="alert alert-success">{{Session::get('mensaje')}}</div>
+    @endif
     <span class="float-right">
         <a href="{{route('altasubgenero')}}">
             <button type="button" class="btn btn-primary">Alta de Subgéneros</button>
@@ -28,7 +31,9 @@
                 <td>{{$c->gen}}</td>
                 <td>{{$c->subgenero}}</td>
                 <td>
+                <a href="{{route('modificasubgenero',['idsubgen'=>$c->idsubgen])}}">
                     <button type="button" class="btn btn-warning">Editar</button>
+                </a>
                     @if($c->deleted_at)
                     <a href="{{route('activarsubgenero',['idsubgen'=>$c->idsubgen])}}">
                         <button type="button" class="btn btn-success">activar</button>

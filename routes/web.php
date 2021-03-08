@@ -67,6 +67,9 @@ Route::get ('desactivalibro/{idlibro}',[LibrosController::class,'desactivalibro'
 Route::get ('activarlibro/{idlibro}',[LibrosController::class,'activarlibro'])->name('activarlibro');
 Route::get ('borrarlibro/{idlibro}',[LibrosController::class,'borrarlibro'])->name('borrarlibro');
 
+Route::get ('modificalibro/{idlibro}',[LibrosController::class,'modificalibro'])->name('modificalibro');
+Route::post ('guardarcambiosL',[LibrosController::class,'guardacambiosL'])->name('guardacambiosL');
+
 
 Route::get ('eloquent',[LibrosController::class,'eloquent'])->name('eloquent');
 
@@ -77,6 +80,8 @@ Route::get ('reportegeneros',[GenerosController::class,'reportegeneros'])->name(
 Route::get ('desactivagenero/{idgen}',[GenerosController::class,'desactivagenero'])->name('desactivagenero');
 Route::get ('activargenero/{idgen}',[GenerosController::class,'activargenero'])->name('activargenero');
 Route::get ('borrargenero/{idgen}',[GenerosController::class,'borrargenero'])->name('borrargenero');
+Route::get ('modificagenero/{idgen}',[GenerosController::class,'modificagenero'])->name('modificagenero');
+Route::post ('guardarcambiosG',[GenerosController::class,'guardarcambiosG'])->name('guardarcambiosG');
 
 //subgeneros
 Route::get ('altasubgenero',[SubgenerosController::class,'altasubgenero'])->name('altasubgenero');
@@ -85,4 +90,5 @@ Route::get ('reportesubgeneros',[SubgenerosController::class,'reportesubgeneros'
 Route::get ('desactivasubgenero/{idsubgen}',[SubgenerosController::class,'desactivasubgenero'])->name('desactivasubgenero');
 Route::get ('activarsubgenero/{idsubgen}',[SubgenerosController::class,'activarsubgenero'])->name('activarsubgenero');
 Route::get ('borrarsubgenero/{idsubgen}',[SubgenerosController::class,'borrarsubgenero'])->name('borrarsubgenero');
-
+Route::get ('modificasubgenero/{idsubgen}',[SubgenerosController::class,'modificasubgenero'])->name('modificasubgenero');
+Route::post ('guardarcambiosSG',[SubgenerosController::class,'guardarcambiosSG'])->name('guardarcambiosSG');

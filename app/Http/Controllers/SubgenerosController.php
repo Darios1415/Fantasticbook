@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\subgeneros;
 use App\Models\generos;
 use App\Models\libros;
+use Session;
 
 class SubgenerosController extends Controller
 {
@@ -33,10 +34,12 @@ class SubgenerosController extends Controller
         $subgeneros->subgenero =$request->subgenero;
         $subgeneros->idgen = $request->idgen;
         $subgeneros->save();
-        return view('mensajesl')
+        /*return view('mensajesl')
             ->with('proceso',"ALTA DE SUBGENEROS")
             ->with('mensaje',"El subgenero $request->subgenero ha sido dado de alta correctamente")
-            ->with('error',1);
+            ->with('error',1);*/
+        Session::flash('mensaje',"El subgenero $request->subgenero ha sido dado de alta correctamente");
+        return redirect()->route('reportesubgeneros');
         
     }
     public function reportesubgeneros(){
@@ -51,32 +54,66 @@ class SubgenerosController extends Controller
             $cuantos = count($buscalibro);
             if($cuantos==0){
                 $subgeneros=subgeneros::withTrashed()->find($idsubgen)->forceDelete();
-                return view('mensajesl')
+                /*return view('mensajesl')
                     ->with('proceso',"BORRAR SUBGÉNERO")
                     ->with('mensaje',"El subgénero ha sido borrado del sistema correctamente")
-                    ->with('error',1);
+                    ->with('error',1);*/
+                Session::flash('mensaje',"El subgénero ha sido borrado del sistema correctamente");
+                return redirect()->route('reportesubgeneros');
             }
             else{
-                return view('mensajesl')
+                Session::flash('mensaje',"El subgénero no se puede borrar debido a que tiene registros en Libro");
+                return redirect()->route('reportesubgeneros');
+                /*return view('mensajesl')
                     ->with('proceso',"DESACTIVAR SUBGÉNERO")
                     ->with('mensaje',"El subgénero no se puede borrar debido a que tiene registros en Libro")
-                    ->with('error',0);
+                    ->with('error',0); */
             }
         
     }
     public function activarsubgenero($idsubgen){
         $subgeneros=subgeneros::withTrashed()->where('idsubgen',$idsubgen)->restore();
-        return view('mensajesl')
+        /*return view('mensajesl')
             ->with('proceso',"ACTIVAR SUBGÉNERO")
             ->with('mensaje',"El subgénero ha sido activado correctamente")
-            ->with('error',1);
+            ->with('error',1);*/
+            Session::flash('mensaje',"El subgénero ha sido activado correctamente");
+            return redirect()->route('reportesubgeneros');
     }
     public function desactivasubgenero($idsubgen){
         $subgeneros=subgeneros::find($idsubgen);
         $subgeneros->delete();
-        return view('mensajesl')
+        /*return view('mensajesl')
             ->with('proceso',"DESACTIVAR SUBGÉNERO")
             ->with('mensaje',"El subgénero ha sido desactivado correctamente")
-            ->with('error',1);
+            ->with('error',1);*/
+        Session::flash('mensaje',"El subgénero ha sido desactivado correctamente");
+        return redirect()->route('reportesubgeneros');
+    }
+    public function modificasubgenero($idsubgen){
+        $consulta=subgeneros::withTrashed()->join('generos','subgeneros.idgen','=','generos.idgen')
+        ->select('subgeneros.idsubgen','subgeneros.idsubgen','generos.genero as gen')
+        ->where('idsubgen',$idsubgen)
+        ->get();
+        $generos =generos::orderBy('genero')->get();
+        return view('modificalibro')
+        ->with('consulta',$consulta[0])
+        ->with('generos',$generos);
+    }
+    public function guardarcambiosSG(){
+        $this->validate($request,[
+            'subgenero' => 'required|regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú,ñ,Ñ,Á,É,Í,Ó,Ú,ü, ]+$/',
+        ]);
+        $subgeneros = subgeneros::find($request->idsubgen);
+        $subgeneros->idsubgen = $request->idsubgen;
+        $subgeneros->subgenero =$request->subgenero;
+        $subgeneros->idgen = $request->idgen;
+        $subgeneros->save();
+        /*return view('mensajesl')
+            ->with('proceso',"MODIFICACIÓN DE SUBGENEROS")
+            ->with('mensaje',"El subgenero $request->subgenero ha sido modificado correctamente")
+            ->with('error',1);*/
+        Session::flash('mensaje',"El subgenero $request->subgenero ha sido modificado correctamente");
+        return redirect()->route('reportesubgeneros');
     }
 }

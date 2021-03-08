@@ -126,7 +126,7 @@
                     <select name="idsubgen" id="idsubgen" class="form-control">
                       <option selected="">Elige un subgénero</option>
                       @foreach($subgeneros as $subgen)
-                      <option value="1">{{$subgen->subgenero}}</option>
+                      <option value="{{$subgen->idsubgen}}">{{$subgen->subgenero}}</option>
                       @endforeach
                     </select>
                   </div>
