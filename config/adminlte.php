@@ -262,7 +262,7 @@ return [
                 ],
                 [
                     'text' => 'Libros',
-                    'url'  => 'libro',
+                    'url'  => 'reportelibros',
                 ],
                 [
                     'text' => 'Sucursal',
@@ -270,23 +270,15 @@ return [
                 ],
                 [
                     'text' => 'Genero',
-                    'url'  => 'genero',
+                    'url'  => 'reportegenero',
                 ],
                 [
                     'text' => 'Subgenero',
-                    'url'  => 'subgenero',
+                    'url'  => 'reportesubgenero',
                 ],
                 [
                     'text' => 'Municipio',
                     'url'  => 'municipios',
-                ],
-                [
-                    'text' => 'Cuenta',
-                    'url'  => 'libros',
-                ],
-                [
-                    'text' => 'Tipo de usuario',
-                    'url'  => 'libros',
                 ],
             ],
         ],

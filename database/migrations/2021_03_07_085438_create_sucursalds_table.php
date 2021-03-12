@@ -22,10 +22,8 @@ class CreateSucursaldsTable extends Migration
             $table->string('interior',9);
             $table->string('exterior',9);
             $table->timestamps();
-         
         });
     }
-
     /**
      * Reverse the migrations.
      *
