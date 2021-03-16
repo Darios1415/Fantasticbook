@@ -19,11 +19,11 @@ class Subgeneros extends Migration
             $table->string('descripcion' ,50);
 
 
-            
+
 
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
-            $table->softDeletesTz();
     });
 }
     /**

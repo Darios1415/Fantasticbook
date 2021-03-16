@@ -9,7 +9,7 @@
             @stop
 
             @section('content')
-         <form action="{{route('cambiosgenero',$generos->idgenero)}}" method="POST">
+         <form action="{{route('guardagenero',$generos->idgenero)}}" method="POST">
         <div class="card card-warning">
           <div class="card-header">
             <h3 class="card-title"> Modificar Genero Literario</h3>
@@ -40,7 +40,7 @@
                       <p class='text-danger'>{{$errors->first('descripcion')}}</p>
                       @endif
                     <label>Descripcion del genero</label>
-                    <textarea class="form-control" rows="3" id="descripcion"  name="descripcion" placeholder="Descripción acerca del genero ..." value="{{$generos->descripcion}}"></textarea>
+                    <textarea class="form-control" rows="3" id="descripcion" value="{{$generos->descripcion}}" name="descripcion" placeholder="Descripción acerca del genero ..."></textarea>
                   </div>
                 </div>
 

@@ -84,16 +84,18 @@ Route::get ('subgenero', function(){
 Route::post ('guardarsubgenero',[GenerosController::class,'guardarsubgenero'])->name('guardarsubgenero');
 Route::get ('altasubgenero',[GenerosController::class,'altasubgenero'])->name('altasubgenero');
 Route::get ('altagenero',[GenerosController::class,'altagenero'])->name('altagenero');
+
 Route::get ('desactivagenero/{idgenero}',[GenerosController::class,'desactivagenero'])->name('desactivagenero');
-Route::get ('reactivagenero/{idgenero}',[GenerosController::class,'reactivagenero'])->name('reactivagenero');
+Route::get ('activagenero/{idgenero}',[GenerosController::class,'activagenero'])->name('activagenero');
 Route::get ('borrargenero/{idgenero}',[GenerosController::class,'borrargenero'])->name('borrargenero');
+
 Route::get ('desactivasubgenero/{idsg}',[GenerosController::class,'desactivasubgenero'])->name('desactivasubgenero');
 Route::get ('reactivasubgenero/{idsg}',[GenerosController::class,'reactivasubgenero'])->name('reactivasubgenero');
 Route::get ('borrarsubgenero/{idsg}',[GenerosController::class,'borrarsubgenero'])->name('borrarsubgenero');
 
 
-Route::get ('modificargenero/{idgenero}',[GenerosController::class,'modificargenero'])->name('modificargenero');
-Route::post ('cambiosgenero/{idgenero}/edit',[GenerosController::class,'cambiosgenero'])->name('cambiosgenero');
+Route::get ('modificagenero/{idgenero}',[GenerosController::class,'modificargenero'])->name('modificargenero');
+Route::post ('guardagenero/{idgenero}',[GenerosController::class,'guardagenero'])->name('guardagenero');
 
 Route::get ('modificarsubgenero/{idsg}',[GenerosController::class,'modificarsubgenero'])->name('modificarsubgenero');
-Route::post ('cambiossubgenero/{idsg}/edit',[GenerosController::class,'cambiossubgenero'])->name('cambiossubgenero');
+Route::post ('cambiossubgenero/{idsg}',[GenerosController::class,'cambiossubgenero'])->name('cambiossubgenero');
