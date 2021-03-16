@@ -9,7 +9,7 @@
 @section('content')
 
     <!-- Main content -->
-  <form action="{{route('guardarlibro')}}" method="POST">
+  <form action="{{route('editarlibro')}}" method="GET">
     {{csrf_field()}}
     <section class="content">
       <div class="container-fluid">
@@ -17,20 +17,14 @@
           <!-- left column -->
           <div class="col-md-12">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-warning">
               <div class="card-header">
                 <h3 class="card-title"> </h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="idlibro">Clave del libro
-                    </label>
-                    <input type="number" class="form-control" name="idlibro" id="idlibro" value="{{$idlsigue}}" readonly="readonly">
-                  </div>
-
-                  <div class="form-group col-md-5">
+                  <div class="form-group col-md-6">
                     <label for="nombre">Título
                       @if($errors->first('nombre'))
                       <p class='text-danger'>{{$errors->first('nombre')}}</p>
@@ -38,7 +32,7 @@
                     </label>
                     <input type="text" class="form-control" name="nombre" id="nombre" value="{{old('nombre')}}" placeholder="Nombre del libro">
                   </div>
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-6">
                     <label for="autor">Autor
                     @if($errors->first('autor'))
                       <p class='text-danger'>{{$errors->first('autor')}}</p>
@@ -116,18 +110,18 @@
                     <label for="idgen">Género:</label>
                     <select name="idgen" id="idgen" class="form-control">
                       <option selected="">Elige el género</option>
-                      @foreach($generos as $gen)
-                      <option value="{{$gen->idgen}}">{{$gen->genero}}</option>
-                      @endforeach
+                      <option value="1">Romance</option>
+                      <option value="2">Histórico</option>
+                      <option value="3">Misterio y suspenso</option>
                     </select>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="idsubgen">Subgénero:</label>
                     <select name="idsubgen" id="idsubgen" class="form-control">
                       <option selected="">Elige un subgénero</option>
-                      @foreach($subgeneros as $subgen)
-                      <option value="1">{{$subgen->subgenero}}</option>
-                      @endforeach
+                      <option value="1">Crímenes reales</option>
+                      <option value="2">Novela histórica</option>
+                      <option value="3">Suspense</option>
                     </select>
                   </div>
                 </div>

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\genero;
 use App\Models\subgenero;
@@ -18,6 +17,7 @@ return view('cruds.modificargenero')->with('generos',$generos[0]);
 }
 public function guardagenero(Request $request ){
 
+<<<<<<< HEAD
     $this->validate($request,[
         'nombre' => 'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
         'descripcion'=>'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
@@ -29,10 +29,17 @@ public function guardagenero(Request $request ){
 
          $generos->save();
 
+=======
+        'nombre'=>'required|alpha',
+        'descripcion'=>'required',
+    ]);
+
+    genero::where('idgenero', $idgenero )->update($validacion);
+>>>>>>> f5bd893c5562effed1700315db9ed835d0c3a912
          // return view('mensajes')->with('proceso','Modificacion del genero')
          // ->with('mensaje',"Se modifico")->with('error',1);
-         Session::flash('mensaje',"El genero $request->nombre se ha modificado correctamente");
-         return redirect()->route('reportegenero');
+        Session::flash('mensaje',"El genero $request->nombre se ha modificado correctamente");
+        return redirect()->route('reportegenero');
 
 }
 public function modificarsubgenero ($idsg){
@@ -56,8 +63,13 @@ public function cambiossubgenero(Request $request){
 
          // return view('mensajes')->with('proceso','Modificacion del genero')
          // ->with('mensaje',"Se modifico")->with('error',1);
+<<<<<<< HEAD
          Session::flash('mensaje',"El genero $request->nombre se ha modificado correctamente");
          return redirect()->route('reportesubgenero');
+=======
+        Session::flash('mensaje',"El subgenero $request->nombre se ha modificado correctamente");
+        return redirect()->route('reportesubgenero');
+>>>>>>> f5bd893c5562effed1700315db9ed835d0c3a912
 }
 
 
@@ -136,44 +148,36 @@ public function borrarsubgenero($idsg){
         return view('cruds.genero')->with('generos',$generos);
 
     }
-     public function guardargenero(Request $request)
-     {
-         $nombre=$request->nombreg;
-         $descripcion=$request->descripcion;
-         $this->validate($request,[
-             'nombre' => 'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
-             'descripcion'=>'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
-              ]);
-              $generos=new genero;
-              $generos->nombre=$request->nombre;
-              $generos->descripcion=$request->descripcion;
+    public function guardargenero(Request $request)
+    {
+        $nombre=$request->nombreg;
+        $descripcion=$request->descripcion;
+        $this->validate($request,[
+            'nombre' => 'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
+            'descripcion'=>'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
+            ]);
+            $generos=new genero;
+            $generos->nombre=$request->nombre;
+            $generos->descripcion=$request->descripcion;
+            $generos->save();
+            Session::flash('mensaje',"El genero $request->nombre se ha creado correctamente");
+            return redirect()->route('reportegenero');
+    }
 
-              $generos->save();
+    public function guardarsubgenero(Request $request)
+    {
+        $nombre=$request->nombre;
+        $descripcion=$request->descripcion;
+        $this->validate($request,[
+            'nombre' => 'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
+            'descripcion'=>'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
+            ]);
+            $subgeneros=new subgenero;
+            $subgeneros->nombre=$request->nombre;
+            $subgeneros->descripcion=$request->descripcion;
+            $subgeneros->save();
+            Session::flash('mensaje',"El subgener $request->nombre ha sido creado correctamente");
+            return redirect()->route('reportesubgenero');
 
-              // return view('mensajes')->with('proceso','creacion de genero')
-              // ->with('mensaje',"SE A creado el genero")->with('error',1);
-              Session::flash('mensaje',"El genero $request->nombre se ha creado correctamente");
-              return redirect()->route('reportegenero');
-
-     }
-      public function guardarsubgenero(Request $request)
-     {
-         $nombre=$request->nombre;
-         $descripcion=$request->descripcion;
-
-         $this->validate($request,[
-             'nombre' => 'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
-             'descripcion'=>'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
-              ]);
-              $subgeneros=new subgenero;
-              $subgeneros->nombre=$request->nombre;
-              $subgeneros->descripcion=$request->descripcion;
-
-              $subgeneros->save();
-              Session::flash('mensaje',"El subgener $request->nombre ha sido creado correctamente");
-              return redirect()->route('reportesubgenero');
-
-     }
-
-
+    }
 }

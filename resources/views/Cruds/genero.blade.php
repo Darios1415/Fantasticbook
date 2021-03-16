@@ -20,7 +20,6 @@
                 <div class="col-sm-8">
                   <!-- text input -->
                   <div class="form-group">
-
                       @if($errors->first('nombre'))
                       <p class='text-danger'>{{$errors->first('nombre')}}</p>
                       @endif
@@ -28,8 +27,6 @@
                     <input type="text" class="form-control" id="nombre" value="{{old('nombre')}}"name="nombre"placeholder="Ingresa el nombre del genero literario ...">
                   </div>
                 </div>
-
-
               </div>
               <div class="row">
                 <div class="col-sm-8">
@@ -49,7 +46,6 @@
           </div>
           <!-- /.card-body -->
         </div>
-
         @stop
 
         @section('css')

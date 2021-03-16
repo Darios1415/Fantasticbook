@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Municipio;
+use Session;
 use Illuminate\Http\Request;
+use \App\Http\Requests\ValidacionMunicipio;
 
-class SucursalController extends Controller
+class MunicipioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,8 @@ class SucursalController extends Controller
      */
     public function index()
     {
-        //
+        $municipios = Municipio::all();
+        return view('Cruds.municipio.municipio')->with('municipios',$municipios);
     }
 
     /**
@@ -23,7 +26,7 @@ class SucursalController extends Controller
      */
     public function create()
     {
-        //
+        return view('Cruds.municipio.create');
     }
 
     /**
@@ -32,9 +35,12 @@ class SucursalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidacionMunicipio $request)
     {
-        //
+        $municipio= new Municipio();
+        $municipio->municipio=$request->municipio;
+        $municipio->save();
+        return redirect("/municipios")->with('success', 'ok');
     }
 
     /**
@@ -43,7 +49,7 @@ class SucursalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idmun)
     {
         //
     }
@@ -54,9 +60,11 @@ class SucursalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idmun)
     {
-        //
+        $municipio=Municipio::findOrFail($idmun);
+        return view('/Cruds/municipio/edit')
+        ->with('municipio', $municipio);
     }
 
     /**
@@ -66,9 +74,12 @@ class SucursalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ValidacionMunicipio $request, $idmun)
     {
-        //
+        $municipio=Municipio::findOrFail($idmun);
+        $municipio->municipio=$request->municipio;
+        $municipio->save();
+        return redirect("/municipios")->with('success', 'edit');
     }
 
     /**
@@ -77,8 +88,10 @@ class SucursalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idmun)
     {
-        //
+        $municipio=Municipio::FindOrFail($idmun);
+        $municipio->delete();
+        return redirect("/municipios")->with('success', 'delete');
     }
 }

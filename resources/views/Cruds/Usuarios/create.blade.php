@@ -15,24 +15,10 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form  class="was-validated">
+                <form  class="was-validated" action="/usuarios" method="POST">
                 @csrf
                   <div class="row">
-                  <div class="col-sm-6">
-                      <!-- file input -->
-                      <div class="form-group">
-                    <label for="exampleInputFile">Foto Perfil</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile" name="foto">
-                        <label class="custom-file-label" for="exampleInputFile">Selecciona foto</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                  </div>
-                    </div>
+                  
                     <div class="col-sm-6">
                       <!-- text input -->
                       <div class="form-group">
@@ -156,40 +142,28 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="contra" id="contra" placeholder="Inserte contraseña" required>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="contra" id="contra" placeholder="Inserte contraseña"  pattern=".{6,}" required>
                         <div class="valid-feedback">¡Ok válido!</div>
-                        <div class="invalid-feedback"> Completa el campo </div>
+                        <div class="invalid-feedback"> Mínimo 6 carácteres </div>
                       </div>
                     </div>
+
                     <div class="col-sm-6">
                       <label for="validationServer03" class="form-label">Género</label>
                       <!-- radio -->
                       <div class="form-group">
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio1" name="genero">
-                          <label for="customRadio1" class="custom-control-label">Femenino</label>
+                          <input class="custom-control-input" type="radio" value="Masculino" id="customRadio1" name="genero" checked="">
+                          <label for="customRadio1" class="custom-control-label">Masculino</label>
                         </div>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio2" name="genero" checked>
-                          <label for="customRadio2" class="custom-control-label" >Masculino</label>
+                          <input class="custom-control-input" type="radio" value="Femenino" id="customRadio2" name="genero" >
+                          <label for="customRadio2" class="custom-control-label" >Femenino</label>
                         </div>
                       </div>
                     </div>
+        
                     <div class="col-sm-6">
-                      <label for="validationServer04"class="form-label">Activo</label>
-                      <!-- radio -->
-                      <div class="form-group">
-                        <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio3" name="activo">
-                          <label for="customRadio3" class="custom-control-label">Si</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio4" name="activo" checked>
-                          <label for="customRadio4" class="custom-control-label" >No</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-12">
                       <!-- textarea -->
                       <div class="form-group">
                         <label  class="form-label">Referencia </label>

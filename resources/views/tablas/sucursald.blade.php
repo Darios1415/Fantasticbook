@@ -1,14 +1,15 @@
 @extends('adminlte::page')
 
-@section('title')
+@section('title', 'Dashboard')
 
 @section('content_header')
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <h1>Municipios</h1>
+
+    <h1>REGISTROS SUCURSALES</h1>
 @stop
 
 @section('content')
-   
+  
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -16,31 +17,36 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <div class="col-lg-4">
-                <div class="btn-group w-100">
-                    <span class="btn btn-success col fileinput-button">
-                        <i class="fas fa-plus"></i>
-                        <span>agregar municipio</span>
-                    </span>
-                </div>
-                </div>
-                </div>
+              <span class="btn btn-dark col fileinput-button">
+                        <span></span>
+                      </span>
+              </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Identificador</th>
+                    <th>ID</th>
                     <th>Nombre</th>
-                    <th>Opciones</th>
-                  </tr>
+                    <th>Telefono</th>
+                    <th>Municipio</th>
+                    <th>Calle</th>
+                    <th>No.Interior</th> 
+                    <th>No.Exterior</th> 
+                    <th>Operacion</th>                
+                     </tr>
                   </thead>
                   <tbody>
                   <tr>
-                    <td>Toluca</td>
-                    <td>Lerma</td>
-                    <td align="left">
-                    <a href="/editar_usuario" class="btn btn-warning"><i class="material-icons">edit</i></a>
+                    <td>1</td>
+                    <td>El rincon del Vago</td>
+                    <td>722583564</td>
+                    <td>Xonacatlan</td>
+                    <th>independencia</th>
+                    <th>34</th>
+                    <th>34</th>
+                    <td >
+                    <a href="/editars" class="btn btn-warning"><i class="material-icons">edit</i></a>
                     <button class="btn btn-danger"><i class="material-icons">delete</i></button>
                 </td>
                   </tr> 
@@ -82,3 +88,11 @@
   });
 </script>
 @stop
+
+
+
+
+
+php artisan make:model -m  ->Modelo<-
+
+php artisan make:Controller  --resource.

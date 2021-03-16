@@ -16,13 +16,19 @@ class Generos extends Migration
         Schema::create('generos',function(Blueprint $table){
             $table->increments('idgenero');
             $table->string('nombre' ,50);
+<<<<<<< HEAD
 
+=======
+>>>>>>> f5bd893c5562effed1700315db9ed835d0c3a912
             $table->string('descripcion' ,50);
-
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
+<<<<<<< HEAD
 
+=======
+            $table->softDeletesTz();
+>>>>>>> f5bd893c5562effed1700315db9ed835d0c3a912
     });
     }
 
