@@ -25,12 +25,8 @@ class Libros extends Migration
             $table->decimal('precio', 4, 2);
             $table->string('archivo',30);
             $table->string('foto',30);
-
             $table->integer('idgen')->unsigned();
-            $table->foreign('idgen')->references('idgen')->on('generos');
             $table->integer('idsubgen')->unsigned();
-            $table->foreign('idsubgen')->references('idsubgen')->on('subgeneros');
-
             $table->rememberToken();
             $table->timestamps();
         });

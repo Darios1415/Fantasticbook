@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibrosController;
 use  App\Http\Controllers\MunicipioController;
+use  App\Http\Controllers\GenerosController;
 
 
 /*
