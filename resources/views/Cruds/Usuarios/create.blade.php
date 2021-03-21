@@ -19,7 +19,7 @@
                 @csrf
                 <div class="form-group">
                     <label>Foto del Usuario: </label>
-                    <input type="file" name="foto" placeholder="Foto">
+                    <input type="file" name="foto" placeholder="Foto" accept="image/*" required>
                 </div>
                   <div class="row">
                     <div class="col-sm-6">

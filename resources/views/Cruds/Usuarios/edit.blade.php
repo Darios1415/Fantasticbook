@@ -20,7 +20,7 @@
                 @method('PUT')
                 <div class="form-group">
                   <label>Foto Usuario: </label>
-                    <input type="file" name="foto" placeholder="Foto" value="{{$usuario->foto}}" onchange="preview(this)">
+                    <input type="file" name="foto" placeholder="Foto" value="{{$usuario->foto}}" onchange="preview(this)" accept="image/*" required>
                     <br>
                     <img src="/img/usuario/{{$usuario->foto}}" width="100px" id="foto" alt="">
                 </div>

@@ -25,7 +25,7 @@
     </div>
 @endif
 
-<a href="usuarios/create" class="btn btn-outline-dark mb-4 "><i class="material-icons">add_circle</i></a>
+<a href="usuarios/create" class="btn btn-outline-dark mb-4 "><i class="material-icons">add_circle</i>Nuevo</a>
 <div class="table-responsive">
 
     <table  id="usuarios" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
