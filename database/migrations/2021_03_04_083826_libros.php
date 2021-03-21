@@ -39,6 +39,6 @@ class Libros extends Migration
      */
     public function down()
     {
-        Schema::drop('generos');
+        Schema::drop('libros');
     }
 }

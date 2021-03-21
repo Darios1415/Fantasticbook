@@ -17,13 +17,6 @@ class Subgeneros extends Migration
             $table->increments('idsg');
             $table->string('nombre' ,50);
             $table->string('descripcion' ,50);
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> f5bd893c5562effed1700315db9ed835d0c3a912
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

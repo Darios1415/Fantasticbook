@@ -9,7 +9,7 @@ use App\Models\libros;
 
 class LibrosController extends Controller
 {
-    // 
+    //
     public function borrarlibro($idlibro){
         $libros=libros::withTrashed()->find($idlibro)->forceDelete();
         return view('mensajesl')
@@ -79,7 +79,7 @@ class LibrosController extends Controller
         return view('mensajesl')
             ->with('proceso',"ALTA DE LIBROS")
             ->with('mensaje',"El libro $request->nombre ha sido dado de alta correctamente");
-        
+
     }
 
     public function reportelibros(){

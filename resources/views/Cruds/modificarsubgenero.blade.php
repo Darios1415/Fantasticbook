@@ -4,7 +4,7 @@
 
 @section('content_header')
 
-            <h1>Genero</h1>
+            <h1>Subgenero</h1>
             @stop
 
             @section('content')
@@ -13,7 +13,7 @@
          <form action="{{route('cambiossubgenero',$subgeneros->idsg)}}" method="POST">
         <div class="card card-warning">
           <div class="card-header">
-            <h3 class="card-title"> Modificar Genero Literario</h3>
+            <h3 class="card-title"> Modificar Subgenero Literario</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -26,8 +26,8 @@
                       @if($errors->first('nombre'))
                       <p class='text-danger'>{{$errors->first('nombre')}}</p>
                       @endif
-                    <label>Ingresa el nombre del genero</label>
-                    <input type="text" class="form-control" id="nombre" value="{{$subgeneros->nombre}}"name="nombre"placeholder="Ingresa el nombre del genero literario ...">
+                    <label>Ingresa el nombre del subgenero</label>
+                    <input type="text" class="form-control" id="nombre" value="{{$subgeneros->nombre}}"name="nombre"placeholder="Ingresa el nombre del subgenero literario ...">
                   </div>
                 </div>
 
@@ -40,8 +40,8 @@
                       @if($errors->first('descripcion'))
                       <p class='text-danger'>{{$errors->first('descripcion')}}</p>
                       @endif
-                    <label>Descripcion del genero</label>
-                    <textarea class="form-control" rows="3" id="descripcion"  name="descripcion" placeholder="Descripción acerca del genero ..." value="{{$subgeneros->descripcion}}"></textarea>
+                    <label>Descripcion del subgenero</label>
+                    <textarea class="form-control" rows="3" id="descripcion"  name="descripcion" placeholder="Descripción acerca del subgenero ..." value="{{$subgeneros->descripcion}}"></textarea>
                   </div>
                 </div>
 

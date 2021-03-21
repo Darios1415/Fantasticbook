@@ -17,7 +17,6 @@ return view('cruds.modificargenero')->with('generos',$generos[0]);
 }
 public function guardagenero(Request $request ){
 
-<<<<<<< HEAD
     $this->validate($request,[
         'nombre' => 'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
         'descripcion'=>'required|regex:/^[A-Z][a-z, ,á,é,í,ó,ú]+$/',
@@ -29,13 +28,6 @@ public function guardagenero(Request $request ){
 
          $generos->save();
 
-=======
-        'nombre'=>'required|alpha',
-        'descripcion'=>'required',
-    ]);
-
-    genero::where('idgenero', $idgenero )->update($validacion);
->>>>>>> f5bd893c5562effed1700315db9ed835d0c3a912
          // return view('mensajes')->with('proceso','Modificacion del genero')
          // ->with('mensaje',"Se modifico")->with('error',1);
         Session::flash('mensaje',"El genero $request->nombre se ha modificado correctamente");
@@ -63,13 +55,10 @@ public function cambiossubgenero(Request $request){
 
          // return view('mensajes')->with('proceso','Modificacion del genero')
          // ->with('mensaje',"Se modifico")->with('error',1);
-<<<<<<< HEAD
-         Session::flash('mensaje',"El genero $request->nombre se ha modificado correctamente");
-         return redirect()->route('reportesubgenero');
-=======
+
         Session::flash('mensaje',"El subgenero $request->nombre se ha modificado correctamente");
         return redirect()->route('reportesubgenero');
->>>>>>> f5bd893c5562effed1700315db9ed835d0c3a912
+
 }
 
 
