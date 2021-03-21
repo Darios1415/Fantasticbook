@@ -22,8 +22,8 @@
                 <th scope="col"><center>Clave</center></th>
                 <th scope="col"><center>Libro</center></th>
                 <th scope="col"><center>Autor</center></th>
-                <th scope="col"><center>Precio</center></th>
                 <th scope="col"><center>Genero</center></th>
+                <th scope="col"><center>Archivo</center></th>
                 <th scope="col"><center>Foto</center></th>
                 <th scope="col"><center>Operaciones</center></th>
             </tr>
@@ -34,9 +34,13 @@
                 <th scope="row"><center>{{$c->idlibro}}</center></th>
                 <td>{{$c->nombre}}</td>
                 <td>{{$c->autor}}</td>
-                <td><center>{{$c->precio}}</center></td>
                 <td>{{$c->gen}}</td>
-                <td>{{$c->foto}}</td>
+                <td>
+                    <a href="{{asset('archivos/'. $c->archivo)}}" download="{{asset('archivos/'. $c->archivo)}}">
+                        <input type="image" src="descargapdf.jpg" height=55 width=50>
+                    </a>
+                </td>
+                <td><img src="{{asset('archivos/'. $c->foto)}}" height=55 width=50></td>
                 <td>
                     <a href="{{route('modificalibro',['idlibro'=>$c->idlibro])}}">
                         <button type="button" class="btn btn-warning">Editar</button>

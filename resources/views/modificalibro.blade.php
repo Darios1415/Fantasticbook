@@ -9,7 +9,7 @@
 @section('content')
 
     <!-- Main content -->
-  <form action="{{route('guardacambiosL')}}" method="POST">
+  <form action="{{route('guardacambiosL')}}" method="POST" enctype="multipart/form-data">
     {{csrf_field()}}
     <section class="content">
       <div class="container-fluid">
@@ -161,34 +161,30 @@
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="InputFile">Archivo
+                    <label for="archivo">Archivo del libro:
                       @if($errors->first('archivo'))
-                      <p class='text-danger'>{{$errors->first('archivo')}}</p>
+                        <p class='text-danger'>{{$errors->first('archivo')}}</p>
                       @endif
                     </label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="archivo" id="archivo" value="{{$consulta->archivo}}">
-                        <label class="custom-file-label" for="archivo">{{$consulta->archivo}}</label>
-                      </div>
-                    </div>
+                    <a href="{{asset('archivos/'. $consulta->archivo)}}">
+                        
+                        {{$consulta->archivo}}
+                    </a>
+                    <input type="file" class="form-control" name="archivo" id="archivo" value="{{$consulta->archivo}}">
                   </div>
                   <div class="form-group col-md-6">
-                  <label for="InputFoto">Imágen
-                    @if($errors->first('foto'))
-                    <p class='text-danger'>{{$errors->first('foto')}}</p>
-                    @endif
-                  </label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="foto" id="foto" value="{{$consulta->foto}}">
-                        <label class="custom-file-label" for="foto">{{$consulta->foto}}</label>
-                      </div>
-                    </div>
+                    <label for="foto">Imgén del libro:
+                      <img src="{{asset('archivos/'. $consulta->foto)}}" height=109 width=100>
+                      @if($errors->first('foto'))
+                        <p class='text-danger'>{{$errors->first('foto')}}</p>
+                      @endif
+                    </label>
+                    <input type="file" class="form-control" name="foto" id="foto">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-xs-6 col-md-6"><input type="submit" value="Guardar" class="btn btn-primary start btn-block btn-lg" tabindex="7"
+                  <div class="col-xs-6 col-md-6">
+                    <input type="submit" value="Guardar" class="btn btn-primary start btn-block btn-lg" tabindex="7"
                     title="Guardar datos ingresados">
                   </div>
                 </div>

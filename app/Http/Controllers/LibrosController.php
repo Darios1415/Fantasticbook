@@ -38,9 +38,25 @@ class LibrosController extends Controller
             'fechap' => 'required',
             'sinopsis' => 'required|regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú,ñ,Ñ,Á,É,Í,Ó,Ú,ü,.,-,_,¿,?, ]+$/',
             'precio' => 'required|regex:/^[0-9]+[.][0-9]{2}$/',
-            'archivo' => 'required',
-            'foto' => 'required|',
+            'archivo' => 'file|mimes:pdf',
+            'foto' => 'image|mimes:jpeg,png',
         ]);
+
+        $file = $request->file('foto');
+        if($file<>""){
+            $foto =$file->getClientOriginalName();
+            $foto2 = $request->idlibro . $foto;
+            \Storage::disk('local')->put($foto2, \File::get($file));
+        }
+
+        $filelibro = $request->file('archivo');
+        if($filelibro<>""){
+            $archivo =$filelibro->getClientOriginalName();
+            $archivo2 = $request->idlibro . $archivo;
+        \Storage::disk('local')->put($archivo2, \File::get($filelibro));
+        }
+
+
         $libros = libros::withTrashed()->find($request->idlibro);
         $libros->idlibro = $request->idlibro;
         $libros->nombre =$request->nombre;
@@ -51,10 +67,14 @@ class LibrosController extends Controller
         $libros->sinopsis =$request->sinopsis;
         $libros->idgen=$request->idgen;
         $libros->idsubgen=$request->idsubgen;
-        $libros->archivo=$request->archivo;
+        if($filelibro<>""){
+        $libros->archivo=$archivo2;
+        }
         $libros->precio=$request->precio;
         $libros->disponibilidad =$request->disponibilidad;
-        $libros->foto =$request->foto;
+        if($file<>""){
+        $libros->foto =$foto2;
+        }
         $libros->save();
         /*
         return view('mensajesl')
@@ -121,9 +141,30 @@ class LibrosController extends Controller
             'fechap' => 'required',
             'sinopsis' => 'required|regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú,ñ,Ñ,Á,É,Í,Ó,Ú,ü,.,-,_,¿,?, ]+$/',
             'precio' => 'required|regex:/^[0-9]+[.][0-9]{2}$/',
-            'archivo' => 'required',
-            'foto' => 'required|',
+            'archivo' => 'file|mimes:pdf',
+            'foto' => 'image|mimes:jpeg,png',
         ]);
+
+        $file = $request->file('foto');
+        if($file<>""){
+            $foto =$file->getClientOriginalName();
+            $foto2 = $request->idlibro . $foto;
+            \Storage::disk('local')->put($foto2, \File::get($file));
+        }
+        else{
+            $foto2 ="sinfotolibro.jpg";
+        }
+
+        $filelibro = $request->file('archivo');
+        if($filelibro<>""){
+            $archivo =$filelibro->getClientOriginalName();
+            $archivo2 = $request->idlibro . $archivo;
+            \Storage::disk('local')->put($archivo2, \File::get($filelibro));
+        }
+        else{
+            $archivo2="sinarchivo.pdf";
+        }
+
         $libros = new libros;
         $libros->idlibro = $request->idlibro;
         $libros->nombre =$request->nombre;
@@ -134,10 +175,10 @@ class LibrosController extends Controller
         $libros->sinopsis =$request->sinopsis;
         $libros->idgen=$request->idgen;
         $libros->idsubgen=$request->idsubgen;
-        $libros->archivo=$request->archivo;
+        $libros->archivo=$archivo2;
         $libros->precio=$request->precio;
         $libros->disponibilidad =$request->disponibilidad;
-        $libros->foto =$request->foto;
+        $libros->foto =$foto2;
         $libros->save();
         /*return view('mensajesl')
             ->with('proceso',"ALTA DE LIBROS")
@@ -149,7 +190,7 @@ class LibrosController extends Controller
 
     public function reportelibros(){
         $consulta=libros::withTrashed()->join('generos','libros.idgen','=','generos.idgen')
-        ->select('libros.idlibro','libros.nombre','libros.autor','libros.precio',
+        ->select('libros.idlibro','libros.nombre','libros.autor','libros.archivo',
         'generos.genero as gen','libros.foto','libros.deleted_at')
         ->orderBy('libros.nombre')
         ->get();
