@@ -32,6 +32,7 @@
         <thead class="bg-primary text-white">
             <tr>
                 <th scope="col" align="justify">Clave</th>
+                <th scope="col" align="justify">Foto</th>
                 <th scope="col" align="justify">Nombre Completo</th>
                 <th scope="col" align="justify">Teléfono</th>
                 <th scope="col" align="justify">Municipio</th>
@@ -47,6 +48,7 @@
             @foreach ($usuarios as $usuario)
             <tr>
                 <td align="center">{{ $usuario->id}}</td>
+                <td><img src="/img/usuario/{{$usuario->foto}}" width="100px" alt=""></td>
                 <td align="left">{{ $usuario->nombre}} {{ $usuario->app}} {{ $usuario->apm}}</td>
                 <td>{{ $usuario->telefono}}</td>
                 <td>{{ $usuario->municipio}}</td>

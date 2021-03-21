@@ -277,8 +277,8 @@ return [
                     'url'  => 'reportesubgenero',
                 ],
                 [
-                    'text' => 'Municipio',
-                    'url'  => 'municipios',
+                    'text' => 'Autor',
+                    'url'  => 'autor',
                 ],
             ],
         ],

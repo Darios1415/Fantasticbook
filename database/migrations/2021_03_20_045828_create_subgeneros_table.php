@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMunicipiosTabla extends Migration
+class CreateSubgenerosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateMunicipiosTabla extends Migration
      */
     public function up()
     {
-        Schema::create('municipios', function (Blueprint $table) {
-            $table->bigIncrements('idmun');
-            $table->string('nombre',50);
+        Schema::create('subgeneros', function (Blueprint $table) {
+            $table->bigIncrements('idsg');
+            $table->string('nombre' ,50);
+            $table->string('descripcion' ,50);
+            $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +30,6 @@ class CreateMunicipiosTabla extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('municipios');
+        Schema::dropIfExists('subgeneros');
     }
 }

@@ -15,9 +15,15 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-              <form action="/usuarios/{{$usuario->id}}" method="POST">
+              <form action="/usuarios/{{$usuario->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+                <div class="form-group">
+                  <label>Foto Usuario: </label>
+                    <input type="file" name="foto" placeholder="Foto" value="{{$usuario->foto}}" onchange="preview(this)">
+                    <br>
+                    <img src="/img/usuario/{{$usuario->foto}}" width="100px" id="foto" alt="">
+                </div>
                   <div class="row">
                     <div class="col-sm-6">
                       <!-- text input -->
@@ -210,6 +216,68 @@
 
 @section('js')
     <script> console.log('Hi!'); </script>
+
+    <script>
+        function preview(e)
+    {
+    if(e.files && e.files[0]){
+        // Comprobamos que sea un formato de imagen
+        if (e.files[0].type.match('image.*')) {
+            // Inicializamos un FileReader. permite que las aplicaciones web lean
+            // ficheros (o información en buffer) almacenados en el cliente de forma
+            // asíncrona
+            // Mas info en: https://developer.mozilla.org/es/docs/Web/API/FileReader
+            var reader=new FileReader();
+            // El evento onload se ejecuta cada vez que se ha leido el archivo
+            // correctamente
+            reader.onload=function(e) {
+                document.getElementById("foto").src=e.target.result;
+            }
+            // El evento onerror se ejecuta si ha encontrado un error de lectura
+            reader.onerror=function(e) {
+                document.getElementById("foto").scr="";
+                alert('Hubo un error al cargar la imagen');
+            }
+            // indicamos que lea la imagen seleccionado por el usuario de su disco duro
+            reader.readAsDataURL(e.files[0]);
+        }else{
+            // El formato del archivo no es una imagen
+            document.getElementById("foto ").src="";
+            alert("El archivo adjunto no es una imagen");
+        }
+    }
+    }
+    </script><script>
+    function preview(e)
+{
+if(e.files && e.files[0]){
+    // Comprobamos que sea un formato de imagen
+    if (e.files[0].type.match('image.*')) {
+        // Inicializamos un FileReader. permite que las aplicaciones web lean
+        // ficheros (o información en buffer) almacenados en el cliente de forma
+        // asíncrona
+        // Mas info en: https://developer.mozilla.org/es/docs/Web/API/FileReader
+        var reader=new FileReader();
+        // El evento onload se ejecuta cada vez que se ha leido el archivo
+        // correctamente
+        reader.onload=function(e) {
+            document.getElementById("foto").src=e.target.result;
+        }
+        // El evento onerror se ejecuta si ha encontrado un error de lectura
+        reader.onerror=function(e) {
+            document.getElementById("foto").scr="";
+            alert('Hubo un error al cargar la imagen');
+        }
+        // indicamos que lea la imagen seleccionado por el usuario de su disco duro
+        reader.readAsDataURL(e.files[0]);
+    }else{
+        // El formato del archivo no es una imagen
+        document.getElementById("foto").src="";
+        alert("El archivo adjunto no es una imagen");
+    }
+}
+}
+</script>
 @stop
 
 

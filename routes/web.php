@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibrosController;
 use  App\Http\Controllers\MunicipioController;
+use  App\Http\Controllers\AutorController;
 use  App\Http\Controllers\GenerosController;
 
 
@@ -59,3 +60,8 @@ Route::get ('reactivasubgenero/{idsg}',[GenerosController::class,'reactivasubgen
 Route::get ('borrarsubgenero/{idsg}',[GenerosController::class,'borrarsubgenero'])->name('borrarsubgenero');
 Route::get ('modificarsubgenero/{idsg}',[GenerosController::class,'modificarsubgenero'])->name('modificarsubgenero');
 Route::post ('cambiossubgenero/{idsg}/edit',[GenerosController::class,'cambiossubgenero'])->name('cambiossubgenero');
+
+// Autor
+Route::resource('autor','App\Http\Controllers\AutorController');
+Route::get ('desactivaautor/{idau}',[AutorController::class,'desactivaautor'])->name('desactivaautor');
+Route::get ('activarautor/{idau}',[AutorController::class,'activarautor'])->name('activarautor');

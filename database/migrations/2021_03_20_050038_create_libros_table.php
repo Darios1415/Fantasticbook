@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Libros extends Migration
+class CreateLibrosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class Libros extends Migration
      */
     public function up()
     {
-        Schema::create('libros',function(Blueprint $table){
-            $table->increments('idlibro');
+        Schema::create('libros', function (Blueprint $table) {
+            $table->bigIncrements('idlibro');
             $table->string('nombre',50);
             $table->string('autor',40);
             $table->integer('paginas');
@@ -29,6 +29,7 @@ class Libros extends Migration
             $table->integer('idsubgen')->unsigned();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -39,6 +40,6 @@ class Libros extends Migration
      */
     public function down()
     {
-        Schema::drop('generos');
+        Schema::dropIfExists('libros');
     }
 }

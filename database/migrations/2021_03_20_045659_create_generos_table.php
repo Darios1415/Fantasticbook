@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Generos extends Migration
+class CreateGenerosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class Generos extends Migration
      */
     public function up()
     {
-        Schema::create('generos',function(Blueprint $table){
-            $table->increments('idgenero');
-            $table->string('nombre' ,50);
+        Schema::create('generos', function (Blueprint $table) {
+            $table->bigIncrements('idgen');
+            $table->string('nombre' ,50)->nulleable;
             $table->string('descripcion' ,50);
-            $table->rememberToken();
             $table->timestamps();
-            $table->softDeletesTz();
-    });
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -30,6 +29,6 @@ class Generos extends Migration
      */
     public function down()
     {
-        Schema::drop('generos');
+        Schema::dropIfExists('generos');
     }
 }

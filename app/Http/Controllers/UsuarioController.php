@@ -38,10 +38,14 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->hasFile('foto')){
+            $foto=$request->foto;
+            $namefoto=uniqid().$foto->getClientOriginalName();
+            $foto->move(public_path()."/img/usuario", $namefoto);
+        }
         //return $request;
-      $usuarios = new Usuario();
-
-        
+        $usuarios = new Usuario();
+        $usuarios->foto=$namefoto;
         $usuarios->nombre = $request->get('nombre');
         $usuarios->app = $request->get('app');
         $usuarios->apm = $request->get('apm');
@@ -100,7 +104,29 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
       $usuario = Usuario::find($id);
-        
+      if(file_exists(public_path()."/img/usuario/".$usuario->foto)){
+        if($request->hasFile('foto')){
+            unlink(public_path()."/img/usuario/".$usuario->foto);
+            $foto=$request->foto;
+            $namefoto=uniqid().$foto->getClientOriginalName();
+            $foto->move(public_path()."/img/usuario/", $namefoto);
+            $usuario->foto=$namefoto;
+        }else{
+            if($request->hasFile('foto')){
+                $foto=$request->foto;
+                $namefoto=uniqid().$foto->getClientOriginalName();
+                $foto->move(public_path()."/img/usuario/", $namefoto);
+                $usuario->foto=$namefoto;
+            }
+        }
+    }else{
+        if($request->hasFile('foto')){
+            $foto=$request->foto;
+            $namefoto=uniqid().$foto->getClientOriginalName();
+            $foto->move(public_path()."/img/usuario/", $namefoto);
+            $autor->foto=$namefoto;
+        }
+    }
         $usuario->nombre = $request->get('nombre');
         $usuario->app = $request->get('app');
         $usuario->apm = $request->get('apm');
@@ -147,14 +173,13 @@ class UsuarioController extends Controller
 
     public function forcedDestroy($id)
     {
-        $usuario = Usuario::find($id);
-
+        $usuario=Usuario::withTrashed()->find($id);
+        if(file_exists(public_path()."/img/usuario/".$usuario->foto)){
+            unlink(public_path()."/img/usuario/".$usuario->foto);
+            }
         Session::flash('mensaje',"El usuario $usuario->nombre $usuario->app $usuario->apm
         ha sido borrado permanentemente");
-
         $usuario->forceDelete();
-        
-
         return redirect('/usuarios');
       
     }

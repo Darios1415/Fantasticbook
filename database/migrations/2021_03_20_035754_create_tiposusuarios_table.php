@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Subgeneros extends Migration
+class CreateTiposusuariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class Subgeneros extends Migration
      */
     public function up()
     {
-        Schema::create('subgeneros',function(Blueprint $table){
-            $table->increments('idsg');
-            $table->string('nombre' ,50);
-            $table->string('descripcion' ,50);
-            $table->rememberToken();
+        Schema::create('tiposusuarios', function (Blueprint $table) {
+            $table->bigIncrements('idtu');
+            $table->string('rol')->comment('tipos de usuarios');
             $table->timestamps();
-            $table->softDeletesTz();
-    });
-}
+        });
+    }
+
     /**
      * Reverse the migrations.
      *
@@ -29,6 +27,6 @@ class Subgeneros extends Migration
      */
     public function down()
     {
-        Schema::drop('subgeneros');
+        Schema::dropIfExists('tiposusuarios');
     }
 }
