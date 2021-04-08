@@ -6,6 +6,10 @@
 <div class="container">
     <h1><center>Reporte de Libros</center></h1>
     <br>
+    @if(Session::has('mensaje'))
+    <div class="alert alert-success">{{Session::get('mensaje')}}</div>
+    @endif
+    
     <span class="float-right">
         <a href="{{route('altalibro')}}">
             <button type="button" class="btn btn-primary">Alta de libro</button>
@@ -18,8 +22,8 @@
                 <th scope="col"><center>Clave</center></th>
                 <th scope="col"><center>Libro</center></th>
                 <th scope="col"><center>Autor</center></th>
-                <th scope="col"><center>Precio</center></th>
                 <th scope="col"><center>Genero</center></th>
+                <th scope="col"><center>Archivo</center></th>
                 <th scope="col"><center>Foto</center></th>
                 <th scope="col"><center>Operaciones</center></th>
             </tr>
@@ -30,11 +34,17 @@
                 <th scope="row"><center>{{$c->idlibro}}</center></th>
                 <td>{{$c->nombre}}</td>
                 <td>{{$c->autor}}</td>
-                <td><center>{{$c->precio}}</center></td>
                 <td>{{$c->gen}}</td>
-                <td>{{$c->foto}}</td>
                 <td>
-                    <button type="button" class="btn btn-warning">Editar</button>
+                    <a href="{{asset('archivos/'. $c->archivo)}}" download="{{asset('archivos/'. $c->archivo)}}">
+                        <input type="image" src="descargapdf.jpg" height=55 width=50>
+                    </a>
+                </td>
+                <td><img src="{{asset('archivos/'. $c->foto)}}" height=55 width=50></td>
+                <td>
+                    <a href="{{route('modificalibro',['idlibro'=>$c->idlibro])}}">
+                        <button type="button" class="btn btn-warning">Editar</button>
+                    </a>
                     @if($c->deleted_at)
                     <a href="{{route('activarlibro',['idlibro'=>$c->idlibro])}}">
                         <button type="button" class="btn btn-success">activar</button>

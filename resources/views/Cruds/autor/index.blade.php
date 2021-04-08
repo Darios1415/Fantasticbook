@@ -118,7 +118,7 @@
    Swal.fire({
   position: '',
   icon: 'success',
-  title: 'Municipio creado',
+  title: 'Autor creado',
   showConfirmButton: false,
   timer: 1500
 })
@@ -130,10 +130,55 @@
     Swal.fire({
     position: '',
     icon: 'success',
-    title: 'Municipio Editado',
+    title: 'Autor Editado',
     showConfirmButton: false,
     timer: 1500
     })
 </script>
 @endif
+
+@if (session('success') =='desactiver')
+<script>
+Swal.fire('Autor desactivado')
+</script>
+@endif
+
+
+@if (session('success') =='activer')
+<script>
+Swal.fire('Autor activado')
+</script>
+@endif
+
+
+<script>
+    $('.formulario-eliminar').submit(function(e){
+        e.preventDefault();
+            Swal.fire({
+            title: '¿Desea eliminar este Autor?',
+            text: "¡Este Autor se eliminara definitivamente!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡si, eliminar!',
+            cancelButtonText: '¡Cancelar!',
+            }).then((result) => {
+            if (result.value) {
+                this.submit();
+            }
+            })
+    })
+</script>
+
+@if (session('success') =='delete')
+<script>
+       Swal.fire(
+            'Autor Eliminado!',
+            'El Autor se elimino con exito.',
+            'success'
+       )
+</script>
+@endif
+
 @stop              

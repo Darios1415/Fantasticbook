@@ -22,7 +22,7 @@ class CreateAutorsTable extends Migration
             $table->string('fecha_na',15);
             $table->string('foto');
             $table->string('nacionalidad');
-            $table->string('clave_inter',15);
+            $table->string('clave_inter');
             $table->string('biografia');
             $table->unsignedBigInteger('idtu');
             $table->unsignedBigInteger('idgen');
