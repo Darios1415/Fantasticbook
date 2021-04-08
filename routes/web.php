@@ -57,9 +57,7 @@ Route::resource('municipios','App\Http\Controllers\MunicipioController');
 //genero
 Route::get ('reportegenero',[GenerosController::class,'reportegenero'])->name('reportegenero');
 Route::post ('guardargenero',[GenerosController::class,'guardargenero'])->name('guardargenero');
-<<<<<<< HEAD
 Route::get ('modificasubgenero/{idsubgen}',[SubgenerosController::class,'modificasubgenero'])->name('modificasubgenero');
-=======
 Route::get ('altagenero',[GenerosController::class,'altagenero'])->name('altagenero');
 
 Route::get ('desactivagenero/{idgenero}',[GenerosController::class,'desactivagenero'])->name('desactivagenero');
@@ -77,4 +75,3 @@ Route::get ('reactivasubgenero/{idsg}',[GenerosController::class,'reactivasubgen
 Route::get ('borrarsubgenero/{idsg}',[GenerosController::class,'borrarsubgenero'])->name('borrarsubgenero');
 Route::get ('modificarsubgenero/{idsg}',[GenerosController::class,'modificarsubgenero'])->name('modificarsubgenero');
 Route::post ('cambiossubgenero/{idsg}',[GenerosController::class,'cambiossubgenero'])->name('cambiossubgenero');
->>>>>>> 6a40e462f34f88e9b74f6ebe62843353ff6840eb
