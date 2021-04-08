@@ -4,6 +4,7 @@ use App\Http\Controllers\LibrosController;
 use  App\Http\Controllers\MunicipioController;
 use  App\Http\Controllers\AutorController;
 use  App\Http\Controllers\GenerosController;
+use  App\Http\Controllers\SucursaldController;
 
 
 /*
@@ -22,7 +23,14 @@ Route::get('/', function () {
 });
 
 //Sucursald
-Route::resource('sucursald','App\Http\Controllers\SucursaldController');
+Route::get ('sucursal',[SucursaldController::class,'index'])->name('index');
+Route::get ('altasuc',[SucursaldController::class,'create'])->name('altasuc');
+Route::post ('guardarsuc',[SucursaldController::class,'guardarsuc'])->name('guardarsuc');
+Route::get ('desactivasuc/{idsucur}',[SucursaldController::class,'desactivasuc'])->name('desactivasuc');
+Route::get ('activasuc/{idsucur}',[SucursaldController::class,'activasuc'])->name('activasuc');
+Route::get ('borrarsuc/{idsucur}',[SucursaldController::class,'borrarsuc'])->name('borrarsuc');
+Route::get ('modificarsuc/{idsucur}',[SucursaldController::class,'modificarsuc'])->name('modificarsuc');
+Route::post ('cambiossuc/{idsucur}',[SucursaldController::class,'update'])->name('cambiossuc');
 
 //usuario
 Route::resource('usuarios','App\Http\Controllers\UsuarioController');
@@ -49,4 +57,24 @@ Route::resource('municipios','App\Http\Controllers\MunicipioController');
 //genero
 Route::get ('reportegenero',[GenerosController::class,'reportegenero'])->name('reportegenero');
 Route::post ('guardargenero',[GenerosController::class,'guardargenero'])->name('guardargenero');
+<<<<<<< HEAD
 Route::get ('modificasubgenero/{idsubgen}',[SubgenerosController::class,'modificasubgenero'])->name('modificasubgenero');
+=======
+Route::get ('altagenero',[GenerosController::class,'altagenero'])->name('altagenero');
+
+Route::get ('desactivagenero/{idgenero}',[GenerosController::class,'desactivagenero'])->name('desactivagenero');
+Route::get ('activagenero/{idgenero}',[GenerosController::class,'activagenero'])->name('activagenero');
+Route::get ('borrargenero/{idgenero}',[GenerosController::class,'borrargenero'])->name('borrargenero');
+Route::get ('modificargenero/{idgenero}',[GenerosController::class,'modificargenero'])->name('modificargenero');
+Route::post ('cambiosgenero/{idgenero}',[GenerosController::class,'cambiosgenero'])->name('cambiosgenero');
+
+// subgenero
+Route::get ('reportesubgenero',[GenerosController::class,'reportesubgenero'])->name('reportesubgenero');
+Route::post ('guardarsubgenero',[GenerosController::class,'guardarsubgenero'])->name('guardarsubgenero');
+Route::get ('altasubgenero',[GenerosController::class,'altasubgenero'])->name('altasubgenero');
+Route::get ('desactivasubgenero/{idsg}',[GenerosController::class,'desactivasubgenero'])->name('desactivasubgenero');
+Route::get ('reactivasubgenero/{idsg}',[GenerosController::class,'reactivasubgenero'])->name('reactivasubgenero');
+Route::get ('borrarsubgenero/{idsg}',[GenerosController::class,'borrarsubgenero'])->name('borrarsubgenero');
+Route::get ('modificarsubgenero/{idsg}',[GenerosController::class,'modificarsubgenero'])->name('modificarsubgenero');
+Route::post ('cambiossubgenero/{idsg}',[GenerosController::class,'cambiossubgenero'])->name('cambiossubgenero');
+>>>>>>> 6a40e462f34f88e9b74f6ebe62843353ff6840eb

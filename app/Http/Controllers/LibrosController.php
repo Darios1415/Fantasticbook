@@ -10,6 +10,7 @@ use Session;
 
 class LibrosController extends Controller
 {
+<<<<<<< HEAD
     // 
     public function modificalibro($idlibro){
         $consulta=libros::withTrashed()->join('generos','libros.idgen','=','generos.idgen')
@@ -87,6 +88,9 @@ class LibrosController extends Controller
 
     }
 
+=======
+    //
+>>>>>>> 6a40e462f34f88e9b74f6ebe62843353ff6840eb
     public function borrarlibro($idlibro){
         $libros=libros::withTrashed()->find($idlibro)->forceDelete();
         /*return view('mensajesl')
@@ -182,10 +186,15 @@ class LibrosController extends Controller
         $libros->save();
         /*return view('mensajesl')
             ->with('proceso',"ALTA DE LIBROS")
+<<<<<<< HEAD
             ->with('mensaje',"El libro $request->nombre ha sido dado de alta correctamente")
             ->with('error',1); */
         Session::flash('mensaje',"El libro $request->nombre ha sido dado de alta correctamente");
         return redirect()->route('reportelibros');
+=======
+            ->with('mensaje',"El libro $request->nombre ha sido dado de alta correctamente");
+
+>>>>>>> 6a40e462f34f88e9b74f6ebe62843353ff6840eb
     }
 
     public function reportelibros(){

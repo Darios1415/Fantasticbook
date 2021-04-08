@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Softdeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Subgenero extends Model
+class Estados extends Model
 {
     use HasFactory;
     use Softdeletes;
-    protected $primaryKey = 'idsg';
-    protected $fillable = ['idsg','nombre','descripcion'];
+    protected $primaryKey = 'idestados';
+    protected $fillable = ['idestados','nombre'];
 }
