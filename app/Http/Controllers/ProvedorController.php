@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Provedor;
 
 class ProvedorController extends Controller
 {
@@ -13,7 +14,9 @@ class ProvedorController extends Controller
      */
     public function index()
     {
-        //
+
+        $provedores= Provedor::all();
+        return view('Cruds.Provedores.index')->with('provedores', $provedores);
     }
 
     /**
@@ -23,7 +26,8 @@ class ProvedorController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('Cruds.Provedores.create');
     }
 
     /**
@@ -34,7 +38,27 @@ class ProvedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasFile('foto')){
+            $foto=$request->foto;
+            $namefoto=uniqid().$foto->getClientOriginalName();
+            $foto->move(public_path()."/img/provedor", $namefoto);
+        }
+
+        $provedores= new Provedor();
+        $provedores->nombre=$request->nombre;
+        $provedoresr->apellidoP=$request->apellidoP;
+        $provedoresr->apellidoM=$request->apellidoM;
+        $provedores->Telefono=$request->Telefono;
+        $provedores->Correo=$request->Correo;
+        $provedores->Estado_inter=$request->Estado;
+        $provedores->Municipio=$request->Municipio;
+        $provedores->Localidad=$request->Localidad;
+        $provedores->Calle=$request->Calle;
+        $provedores->Numeroint=$request->Numeroint;
+        $provedores->Numeroext=$request->Numeroext;
+        $provedoresr->foto=$namefoto;
+        $provedoresr->save();
+        return redirect("/provedor")->with('success', 'ok');
     }
 
     /**

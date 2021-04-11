@@ -65,3 +65,7 @@ Route::post ('cambiossubgenero/{idsg}/edit',[GenerosController::class,'cambiossu
 Route::resource('autor','App\Http\Controllers\AutorController');
 Route::get ('desactivaautor/{idau}',[AutorController::class,'desactivaautor'])->name('desactivaautor');
 Route::get ('activarautor/{idau}',[AutorController::class,'activarautor'])->name('activarautor');
+
+
+//Provedores
+Route::resource('provedores', 'App\Http\Controllers\ProvedorController');
