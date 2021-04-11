@@ -67,5 +67,5 @@ Route::get ('desactivaautor/{idau}',[AutorController::class,'desactivaautor'])->
 Route::get ('activarautor/{idau}',[AutorController::class,'activarautor'])->name('activarautor');
 
 
-//Provedores
+//Proveedores
 Route::resource('provedores', 'App\Http\Controllers\ProvedorController');
