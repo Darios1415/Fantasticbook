@@ -111,8 +111,8 @@
     }
     });
   });
-
 </script>
+
 @if (session('success') =='ok')
 <script>
    Swal.fire({
