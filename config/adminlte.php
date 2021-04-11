@@ -258,35 +258,27 @@ return [
             'submenu' => [
                 [
                     'text'    => 'Usuarios',
-                    'url'     => 'reporte_usuarios',
+                    'url'     => 'usuarios',
                 ],
                 [
                     'text' => 'Libros',
-                    'url'  => 'libro',
+                    'url'  => 'reportelibros',
                 ],
                 [
                     'text' => 'Sucursal',
-                    'url'  => 'libros',
+                    'url'  => 'sucursald',
                 ],
                 [
                     'text' => 'Genero',
-                    'url'  => 'genero',
+                    'url'  => 'reportegenero',
                 ],
                 [
                     'text' => 'Subgenero',
-                    'url'  => 'subgenero',
+                    'url'  => 'reportesubgenero',
                 ],
                 [
-                    'text' => 'Municipio',
-                    'url'  => 'municipio',
-                ],
-                [
-                    'text' => 'Cuenta',
-                    'url'  => 'libros',
-                ],
-                [
-                    'text' => 'Tipo de usuario',
-                    'url'  => 'libros',
+                    'text' => 'Autor',
+                    'url'  => 'autor',
                 ],
             ],
         ],
@@ -389,11 +381,11 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
                 ],
             ],
@@ -426,5 +418,5 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/9.-Other-Configuration
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

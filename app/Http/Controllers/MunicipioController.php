@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Municipio;
+use Session;
 use Illuminate\Http\Request;
+use \App\Http\Requests\ValidacionMunicipio;
 
 class MunicipioController extends Controller
 {
@@ -13,7 +15,8 @@ class MunicipioController extends Controller
      */
     public function index()
     {
-        return view('tablas.municipio');
+        $municipios = Municipio::all();
+        return view('Cruds.municipio.municipio')->with('municipios',$municipios);
     }
 
     /**
@@ -32,13 +35,12 @@ class MunicipioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidacionMunicipio $request)
     {
-    /*  $municipio = new municipio();
-        $municipio->municipio = $request->get('municipio');
-        $municipio->save(); 
-        return redirect('/municipio');
-    */
+        $municipio= new Municipio();
+        $municipio->municipio=$request->municipio;
+        $municipio->save();
+        return redirect("/municipios")->with('success', 'ok');
     }
 
     /**
@@ -60,8 +62,9 @@ class MunicipioController extends Controller
      */
     public function edit($idmun)
     {
-        //$municipio = Municipio::find(idmun);
-        return view('Cruds.municipio.edit');//->with('municipio',$municipio);
+        $municipio=Municipio::findOrFail($idmun);
+        return view('/Cruds/municipio/edit')
+        ->with('municipio', $municipio);
     }
 
     /**
@@ -71,13 +74,12 @@ class MunicipioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ValidacionMunicipio $request, $idmun)
     {
-    /*  $municipio = Municipio::find($idmun);
-        $municipio->municipio = $request->get('municipio');
-        $municipio->save(); 
-        return redirect('/municpio');
-    */
+        $municipio=Municipio::findOrFail($idmun);
+        $municipio->municipio=$request->municipio;
+        $municipio->save();
+        return redirect("/municipios")->with('success', 'edit');
     }
 
     /**
@@ -88,9 +90,8 @@ class MunicipioController extends Controller
      */
     public function destroy($idmun)
     {
-    /*  $municipio = Municipio::find($idmun);
+        $municipio=Municipio::FindOrFail($idmun);
         $municipio->delete();
-        return redirect('/municipio');
-    */
+        return redirect("/municipios")->with('success', 'delete');
     }
 }

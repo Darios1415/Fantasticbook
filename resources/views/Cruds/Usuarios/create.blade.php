@@ -15,10 +15,13 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form  class="was-validated" action="/usuarios" method="POST">
+                <form  class="was-validated" action="/usuarios" method="POST" enctype="multipart/form-data">
                 @csrf
+                <div class="form-group">
+                    <label>Foto del Usuario: </label>
+                    <input type="file" name="foto" placeholder="Foto">
+                </div>
                   <div class="row">
-                  
                     <div class="col-sm-6">
                       <!-- text input -->
                       <div class="form-group">
