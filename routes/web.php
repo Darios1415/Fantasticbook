@@ -32,6 +32,21 @@ Route::delete('borrarUsuario/{id}', 'App\Http\Controllers\UsuarioController@forc
 //libros
 Route::get ('altalibro',[LibrosController::class,'altalibro'])->name('altaempleado');
 Route::post ('guardarlibro',[LibrosController::class,'guardarlibro'])->name('guardarlibro');
+Route::get ('genero', function(){
+    return view('cruds.genero');
+});
+
+
+Route::get ('crear_municipio', function(){
+    return view('Cruds.municipio.create');
+});
+Route::get ('editar_municipio', function(){
+    return view('Cruds.municipio.edit');
+});
+Route::resource('municipio','App\Http\Controllers\MunicipioController');
+//libros
+Route::get ('altalibro',[LibrosController::class,'altalibro'])->name('altaempleado');
+Route::post ('guardarlibro',[LibrosController::class,'guardarlibro'])->name('guardarlibro');
 Route::get ('reportelibros',[LibrosController::class,'reportelibros'])->name('reportelibros');
 Route::get ('desactivalibro/{idlibro}',[LibrosController::class,'desactivalibro'])->name('desactivalibro');
 Route::get ('activarlibro/{idlibro}',[LibrosController::class,'activarlibro'])->name('activarlibro');
@@ -51,6 +66,12 @@ Route::get ('borrargenero/{idgenero}',[GenerosController::class,'borrargenero'])
 Route::get ('modificargenero/{idgenero}',[GenerosController::class,'modificargenero'])->name('modificargenero');
 Route::post ('cambiosgenero/{idgenero}/edit',[GenerosController::class,'cambiosgenero'])->name('cambiosgenero');
 
+//Sucursald 
+Route::get ('sucursald', function(){
+    return view('tablas.sucursald');
+});
+Route::post ('guardarlibro',[LibrosController::class,'guardarlibro'])->name('guardarlibro');
+
 // subgenero
 Route::get ('reportesubgenero',[GenerosController::class,'reportesubgenero'])->name('reportesubgenero');
 Route::post ('guardarsubgenero',[GenerosController::class,'guardarsubgenero'])->name('guardarsubgenero');
@@ -69,3 +90,4 @@ Route::get ('activarautor/{idau}',[AutorController::class,'activarautor'])->name
 
 //Proveedores
 Route::resource('provedores', 'App\Http\Controllers\ProvedorController');
+>>>>>>> ef351a06a0d339afa9bc8442718639943ffd9de4
