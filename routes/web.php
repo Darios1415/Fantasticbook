@@ -48,6 +48,8 @@ Route::get ('editar_usuario', function(){
     return view('Cruds.Usuarios.edit');
 });
 Route::resource('usuarios','App\Http\Controllers\UsuarioController');
+Route::post('restaurarUsuario/{id}', 'App\Http\Controllers\UsuarioController@activeUser')->name('restaurarUsuario');
+Route::delete('borrarUsuario/{id}', 'App\Http\Controllers\UsuarioController@forcedDestroy')->name('borrarUsuario');
 //ventas
 Route::get ('ventas', function(){
     return view('cruds.ventas');
@@ -60,10 +62,8 @@ Route::post ('guardarlibro',[LibrosController::class,'guardarlibro'])->name('gua
 Route::get ('genero', function(){
     return view('cruds.genero');
 });
-Route::post('guardar',[GenerosController::class,"guardar"])->name ('guardar');
 
-    return view('tablas.municipio');    
-});
+
 Route::get ('crear_municipio', function(){
     return view('Cruds.municipio.create');
 });
@@ -85,3 +85,4 @@ Route::get ('municipio', function(){
 Route::get ('sucursald', function(){
     return view('tablas.sucursald');
 });
+Route::post ('guardarlibro',[LibrosController::class,'guardarlibro'])->name('guardarlibro');

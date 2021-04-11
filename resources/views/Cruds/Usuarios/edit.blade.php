@@ -15,30 +15,15 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-              <form action="/usuarios" method="POST">
+              <form action="/usuarios/{{$usuario->id}}" method="POST">
                 @csrf
                 @method('PUT')
                   <div class="row">
-                  <div class="col-sm-6">
-                      <!-- file input -->
-                      <div class="form-group">
-                    <label for="exampleInputFile">Foto Perfil</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile" name="foto">
-                        <label class="custom-file-label" for="exampleInputFile">Selecciona foto</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                  </div>
-                    </div>
                     <div class="col-sm-6">
                       <!-- text input -->
                       <div class="form-group">
                         <label  class="form-label">Nombre(s)</label>
-                        <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Inserte nombre" pattern="[A-Za-záéíóú ]+[A-Za-záéíóú ]" required>
+                        <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Inserte nombre" pattern="[A-Za-záéíóú ]+[A-Za-záéíóú ]" value="{{$usuario->nombre}}" required >
                         <div class="valid-feedback">¡Ok válido!</div>
                         <div class="invalid-feedback"> Letras mayúsculas y minúsculas </div>
                       </div>
@@ -47,7 +32,7 @@
                       <!-- text input -->
                       <div class="form-group">
                         <label class="form-label">Apellido Paterno</label>
-                        <input type="text" class="form-control" name="app" id="app" placeholder="Inserte apellido parterno" pattern="[A-Za-záéíóú ]+[A-Za-záéíóú ]" required>
+                        <input type="text" class="form-control" name="app" id="app" placeholder="Inserte apellido parterno" pattern="[A-Za-záéíóú ]+[A-Za-záéíóú ]" value="{{$usuario->app}}" required>
                         <div class="valid-feedback">¡Ok válido!</div>
                         <div class="invalid-feedback"> Letras mayúsculas y minúsculas</div>
                       </div>
@@ -56,7 +41,7 @@
                       <!-- text input -->
                       <div class="form-group">
                         <label class="form-label">Apellido Materno</label>
-                        <input type="text" class="form-control"  name="apm" id="apm" placeholder="Inserte apellido materno" pattern="[A-Za-záéíóú ]+[A-Za-záéíóú ]" required>
+                        <input type="text" class="form-control"  name="apm" id="apm" placeholder="Inserte apellido materno" pattern="[A-Za-záéíóú ]+[A-Za-záéíóú ]" value="{{$usuario->apm}}" required>
                         <div class="valid-feedback">¡Ok válido!</div>
                         <div class="invalid-feedback"> Letras mayúsculas y minúsculas </div>
                       </div>
@@ -65,7 +50,7 @@
                       <!-- date input -->
                       <div class="form-group">
                         <label class="form-label">Fecha Nacimiento</label>
-                        <input type="date" class="form-control" name="fn" id="fn" required>
+                        <input type="date" class="form-control" name="fn" id="fn" value="{{$usuario->fn}}" required>
                         <div class="valid-feedback">¡Ok válido!</div>
                         <div class="invalid-feedback"> Completa el campo </div>
                       </div>
@@ -74,7 +59,7 @@
                       <!-- date input -->
                       <div class="form-group">
                         <label class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" placeholder="Inserte teléfono" name="telefono" id="telefono"  pattern="[0-9]{10}" required>
+                        <input type="text" class="form-control" placeholder="Inserte teléfono" name="telefono" id="telefono"  pattern="[0-9]{10}" value="{{$usuario->telefono}}" required>
                         <div class="valid-feedback">¡Ok válido!</div>
                         <div class="invalid-feedback"> Máximo 10 digítos </div>
                       </div>
@@ -83,7 +68,7 @@
                       <!-- text input -->
                       <div class="form-group">
                         <label class="form-label">Estado</label>
-                        <input type="text" class="form-control" placeholder="Inserte estado" name="estado" id="estado" pattern="[A-Za-záéíóú ]+[A-Za-záéíóú ]" required>
+                        <input type="text" class="form-control" placeholder="Inserte estado" name="estado" id="estado" pattern="[A-Za-záéíóú ]+[A-Za-záéíóú ]" value="{{$usuario->estado}}" required>
                         <div class="valid-feedback">¡Ok válido!</div>
                         <div class="invalid-feedback"> Letras mayúsculas y minúsculas  </div>
                       </div>
@@ -91,8 +76,8 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                         <label class="form-label">Municipio</label>
-                            <select class="form-control select2" style="width: 100%;"  name="municipio" id="municipio" required>
-                                <option selected disabled value="">Seleccione</option>
+                            <select class="form-control select2" style="width: 100%;"  name="municipio" id="municipio"   required>
+                                <option selected value="{{$usuario->municipio}}">{{$usuario->municipio}}</option>
                                 <option>Toluca</option>
                                 <option>Lerma</option>
                                 <option>Xonacatlán</option>
@@ -106,7 +91,7 @@
                       <!-- text input -->
                       <div class="form-group">
                         <label class="form-label">Calle</label>
-                        <input type="text" class="form-control" placeholder="Inserte calle" name="calle" id="calle" pattern="[A-Za-z0-9áéíóú ]+[A-Za-z0-9áéíóú ]"  required>
+                        <input type="text" class="form-control" placeholder="Inserte calle" name="calle" id="calle" pattern="[A-Za-z0-9áéíóú ]+[A-Za-z0-9áéíóú ]" value="{{$usuario->calle}}"  required>
                         <div class="valid-feedback">¡Ok válido!</div>
                         <div class="invalid-feedback"> Completa el campo </div>
                       </div>
@@ -115,7 +100,7 @@
                       <!-- input input -->
                       <div class="form-group">
                         <label class="form-label">Número Interior</label>
-                        <input type="number" class="form-control" placeholder="Inserte número interior" name="num_i" id="num_i" pattern="[0-9]{3}" required>
+                        <input type="number" class="form-control" placeholder="Inserte número interior" name="num_i" id="num_i" pattern="[0-9]{3}" value="{{$usuario->num_i}}" required>
                         <div class="valid-feedback">¡Ok válido!</div>
                         <div class="invalid-feedback"> Máximo 3 digítos </div>
                       </div>
@@ -123,8 +108,8 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                         <label class="form-label">Tipo de Usuario</label>
-                            <select class="form-control select2" style="width: 100%;" name="type" id="type" required>
-                                <option selected disabled value="">Seleccione</option>
+                            <select class="form-control select2" style="width: 100%;" name="type" id="type"  required>
+                                <option selected value="{{$usuario->type}}">{{$usuario->type}}</option>
                                 <option>Administrador</option>
                                 <option>Autor</option>
                                 <option>Cliente</option>
@@ -136,8 +121,8 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                         <label class="form-label">Tipo de Cuenta</label>
-                            <select class="form-control select2" style="width: 100%;" name="cuenta" id="cuenta" required>
-                                <option selected disabled value="">Seleccione</option>
+                            <select class="form-control select2" style="width: 100%;" name="cuenta" id="cuenta"  required>
+                                <option selected  value="{{$usuario->cuenta}}">{{$usuario->cuenta}}</option>
                                 <option>Premium</option>
                                 <option>Free</option>
                             </select>
@@ -149,7 +134,7 @@
                       <!-- input input -->
                       <div class="form-group">
                         <label class="form-label">Correo</label>
-                        <input type="email" class="form-control" placeholder="Inserte correo" name="correo" id="correo" pattern="^[A-Za-z0-9.!#$%&´*/=]+@[A-Za-z0-9]+(?:\.[A-Za-z0-9-]+)*$" required>
+                        <input type="email" class="form-control" placeholder="Inserte correo" name="correo" id="correo" pattern="^[A-Za-z0-9.!#$%&´*/=]+@[A-Za-z0-9]+(?:\.[A-Za-z0-9-]+)*$" value="{{$usuario->correo}}" required>
                         <div class="valid-feedback">¡Ok válido!</div>
                         <div class="invalid-feedback"> Completa el campo @ </div>
                       </div>
@@ -157,44 +142,46 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="contra" id="contra" placeholder="Inserte contraseña" required>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="contra" id="contra" placeholder="Inserte contraseña"  pattern=".{6,}" value="{{$usuario->contra}}" required>
                         <div class="valid-feedback">¡Ok válido!</div>
-                        <div class="invalid-feedback"> Completa el campo </div>
+                        <div class="invalid-feedback"> Mínimo 6 carácteres </div>
                       </div>
                     </div>
+
                     <div class="col-sm-6">
                       <label for="validationServer03" class="form-label">Género</label>
                       <!-- radio -->
+
                       <div class="form-group">
-                        <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio1" name="genero">
-                          <label for="customRadio1" class="custom-control-label">Femenino</label>
+                      @if($usuario->genero == 'Masculino')
+                        <div class="custom-control custom-radio" >
+                          <input class="custom-control-input" type="radio" id="customRadio1" name="genero" value="Masculino" checked="">
+                          <label for="customRadio1" class="custom-control-label">Masculino</label>
                         </div>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio2" name="genero" checked>
-                          <label for="customRadio2" class="custom-control-label" >Masculino</label>
+                          <input class="custom-control-input" type="radio" id="customRadio2" name="genero" value="Femenino" >
+                          <label for="customRadio2" class="custom-control-label" >Femenino</label>
                         </div>
+                      @else
+                      <div class="custom-control custom-radio" >
+                          <input class="custom-control-input" type="radio" id="customRadio1" name="genero" value="Masculino" >
+                          <label for="customRadio1" class="custom-control-label">Masculino</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" id="customRadio2" name="genero" value="Femenino" checked="">
+                          <label for="customRadio2" class="custom-control-label" >Femenino</label>
+                        </div>
+                      @endif
                       </div>
                     </div>
+                    
                     <div class="col-sm-6">
-                      <label for="validationServer04"class="form-label">Activo</label>
-                      <!-- radio -->
-                      <div class="form-group">
-                        <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio3" name="activo">
-                          <label for="customRadio3" class="custom-control-label">Si</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio4" name="activo" checked>
-                          <label for="customRadio4" class="custom-control-label" >No</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-12">
                       <!-- textarea -->
                       <div class="form-group">
                         <label  class="form-label">Referencia </label>
-                        <textarea   class="form-control"  placeholder="Inserte una referencia de vivienda" name="referencia" id="referencia" required></textarea>
+                        <textarea   class="form-control"  name="referencia" id="referencia"  required>
+                          {{$usuario->referencia}}
+                        </textarea>
                         <div class="valid-feedback">¡Ok válido!</div>
                         <div class="invalid-feedback"> Completa el campo </div>
                       </div>
