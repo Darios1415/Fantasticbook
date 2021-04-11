@@ -89,8 +89,4 @@ Route::get ('activarautor/{idau}',[AutorController::class,'activarautor'])->name
 
 
 //Proveedores
-<<<<<<< HEAD
-Route::resource('provedores', 'App\Http\Controllers\ProvedorController');
-=======
 Route::resource('proveedores', 'App\Http\Controllers\ProvedorController');
->>>>>>> marianita
