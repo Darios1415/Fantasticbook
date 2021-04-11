@@ -91,6 +91,15 @@
                             {!! $errors->first('Numeroext', '<small class="text-danger"">:message</small>') !!}
                             </div>
                             </div>
+<<<<<<< HEAD
+
+
+
+
+
+
+=======
+>>>>>>> ef351a06a0d339afa9bc8442718639943ffd9de4
                             </div>
                             <div class="form-group">
                             <div class="row">

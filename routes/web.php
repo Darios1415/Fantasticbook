@@ -40,6 +40,21 @@ Route::delete('borrarUsuario/{id}', 'App\Http\Controllers\UsuarioController@forc
 //libros
 Route::get ('altalibro',[LibrosController::class,'altalibro'])->name('altaempleado');
 Route::post ('guardarlibro',[LibrosController::class,'guardarlibro'])->name('guardarlibro');
+Route::get ('genero', function(){
+    return view('cruds.genero');
+});
+
+
+Route::get ('crear_municipio', function(){
+    return view('Cruds.municipio.create');
+});
+Route::get ('editar_municipio', function(){
+    return view('Cruds.municipio.edit');
+});
+Route::resource('municipio','App\Http\Controllers\MunicipioController');
+//libros
+Route::get ('altalibro',[LibrosController::class,'altalibro'])->name('altaempleado');
+Route::post ('guardarlibro',[LibrosController::class,'guardarlibro'])->name('guardarlibro');
 Route::get ('reportelibros',[LibrosController::class,'reportelibros'])->name('reportelibros');
 Route::get ('desactivalibro/{idlibro}',[LibrosController::class,'desactivalibro'])->name('desactivalibro');
 Route::get ('activarlibro/{idlibro}',[LibrosController::class,'activarlibro'])->name('activarlibro');
@@ -87,3 +102,7 @@ Route::post ('cambiossubgenero/{idsg}/edit',[GenerosController::class,'cambiossu
 Route::resource('autor','App\Http\Controllers\AutorController');
 Route::get ('desactivaautor/{idau}',[AutorController::class,'desactivaautor'])->name('desactivaautor');
 Route::get ('activarautor/{idau}',[AutorController::class,'activarautor'])->name('activarautor');
+
+
+//Proveedores
+Route::resource('proveedores', 'App\Http\Controllers\ProvedorController');
