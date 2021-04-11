@@ -15,8 +15,8 @@ class ProvedorController extends Controller
     public function index()
     {
 
-        $provedores= Provedor::all();
-        return view('Cruds.Provedores.index')->with('provedores', $provedores);
+        $proveedor= Provedor::all();
+        return view('Cruds.proveedor.index')->with('proveedor', $proveedor);
     }
 
     /**
@@ -27,7 +27,7 @@ class ProvedorController extends Controller
     public function create()
     {
         
-        return view('Cruds.Provedores.create');
+        return view('Cruds.proveedor.create');
     }
 
     /**
@@ -44,20 +44,20 @@ class ProvedorController extends Controller
             $foto->move(public_path()."/img/provedor", $namefoto);
         }
 
-        $provedores= new Provedor();
-        $provedores->nombre=$request->nombre;
-        $provedoresr->apellidoP=$request->apellidoP;
-        $provedoresr->apellidoM=$request->apellidoM;
-        $provedores->Telefono=$request->Telefono;
-        $provedores->Correo=$request->Correo;
-        $provedores->Estado_inter=$request->Estado;
-        $provedores->Municipio=$request->Municipio;
-        $provedores->Localidad=$request->Localidad;
-        $provedores->Calle=$request->Calle;
-        $provedores->Numeroint=$request->Numeroint;
-        $provedores->Numeroext=$request->Numeroext;
-        $provedoresr->foto=$namefoto;
-        $provedoresr->save();
+        $proveedor= new Provedor();
+        $proveedor->nombre=$request->nombre;
+        $proveedor->apellidoP=$request->apellidoP;
+        $proveedor->apellidoM=$request->apellidoM;
+        $proveedor->Telefono=$request->Telefono;
+        $proveedor->Correo=$request->Correo;
+        $proveedor->Estado_inter=$request->Estado;
+        $proveedor->Municipio=$request->Municipio;
+        $proveedor->Localidad=$request->Localidad;
+        $proveedor->Calle=$request->Calle;
+        $proveedor->Numeroint=$request->Numeroint;
+        $proveedor->Numeroext=$request->Numeroext;
+        $proveedor->foto=$namefoto;
+        $proveedor->save();
         return redirect("/provedor")->with('success', 'ok');
     }
 
