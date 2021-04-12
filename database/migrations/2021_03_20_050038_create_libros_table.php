@@ -40,10 +40,6 @@ class CreateLibrosTable extends Migration
      */
     public function down()
     {
-<<<<<<< HEAD:database/migrations/2021_03_20_050038_create_libros_table.php
-        Schema::dropIfExists('libros');
-=======
         Schema::drop('libros');
->>>>>>> 6a40e462f34f88e9b74f6ebe62843353ff6840eb:database/migrations/2021_03_04_083826_libros.php
     }
 }

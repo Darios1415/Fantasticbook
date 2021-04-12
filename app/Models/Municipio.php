@@ -11,4 +11,9 @@ class Municipio extends Model
     use HasFactory;
     protected $primaryKey = 'idmun';
     protected $fillable = ['idmun','municipio'];
+
+    public function sucursal(){
+        return $this->hasMany('App\Models\Sucursales');
+    }
+
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Sucursales extends Migration
+class CreateSucursalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,20 +17,17 @@ class Sucursales extends Migration
              $table->increments('idsucur');
              $table->string('nombre',30);
              $table->string('telefono',10);
-
              $table->string('calle',50);
              $table->string('interior',9);
              $table->string('exterior',9);
              $table->string('codigo',9);
              $table->string('postal',9);
              $table->string('correo');
-             ;
              $table->enum('activo',['si','no']);
-
              $table->string('img',255)->nullable();
-             $table->integer('idmun')->unsigned();
+             $table->unsignedBigInteger('idmun');
+             $table->unsignedBigInteger('idestados');
              $table->foreign('idmun')->references('idmun')->on('municipios');
-             $table->integer('idestados')->unsigned();
              $table->foreign('idestados')->references('idestados')->on('estados');
              $table->rememberToken();
              $table->softDeletes();

@@ -14,10 +14,8 @@
 </div>
 </div>
             @stop
-
             @section('content')
             <!-- Main content -->
-
             <section class="content">
               <div class="container-fluid">
                 <div class="row">
@@ -67,9 +65,9 @@
                                 <th scope="row">{{$sucursal->codigo}}</th>
                                 <td>{{$sucursal->nombre}}</td>
                                 <td>{{$sucursal->telefono}}
-                                {{$sucursal->correo}}</td>
-                                <td>{{$sucursal->estados}}</td>
-                                <td>{{$sucursal->municipios}}</td>
+                                <td>{{$sucursal->correo}}</td>
+                                <td>{{$sucursal->estados->nombre}}</td>
+                                <td>{{$sucursal->municipios->nombre}}</td>
                                 <td>{{$sucursal->calle}}</td>
 
                                 <td>

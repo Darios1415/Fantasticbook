@@ -12,5 +12,14 @@ class Sucursales extends Model
     use Softdeletes;
     protected $primaryKey = 'idsucur';
     protected $fillable = ['nombre','telefono','codigo','postal',
-    'estados','correo','activo','municipio','calle','interior','exterior','img'];
+    'estados','correo','activo','idmun','calle','interior','exterior','img'];
+    
+    
+    public function municipio(){
+        return $this->belongsTo('App\Models\Municipio', 'idmun');
+    }
+
+    public function estados(){
+        return $this->belongsTo('App\Models\Estados', 'idestados');
+    }
 }

@@ -14,13 +14,13 @@ class SucursaldController extends Controller
 
     public function index()
     {
-       $sucursales= Sucursales::withTrashed()->join('estados','sucursales.idestados','=','estados.idestados')
-       ->join('municipios','sucursales.idmun','=','municipios.idmun')
-      -> select('sucursales.idsucur','sucursales.codigo','sucursales.nombre',
-      'sucursales.correo','sucursales.img','sucursales.calle','sucursales.exterior'
-      ,'estados.nombre as estados','municipios.municipio as municipios','sucursales.telefono','sucursales.deleted_at')
-       ->get();
-        return view('Cruds.Sucursales.index')->with('sucursales',$sucursales);
+        $sucursales=Sucursales::withTrashed()->get();
+        $municipios=Municipio::all();
+        $estados=Estados::all();
+        return view('Cruds/Sucursales/index')
+        ->with('sucursales', $sucursales)
+        ->with('municipios', $municipios)
+        ->with('estados', $estados);
     }
 
 

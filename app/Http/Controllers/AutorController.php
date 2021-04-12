@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Autor;
 use App\Models\Genero;
 use Illuminate\Http\Request;

@@ -10,7 +10,7 @@ class Genero extends Model
     use HasFactory;
     use Softdeletes;
     protected $primaryKey = 'idgen';
-    protected $fillable = ['idgen','nombre','descripcion'];
+    protected $fillable = ['idgen','nombre'];
 
     public function autor(){
         return $this->hasMany('App\Models\Autor');
