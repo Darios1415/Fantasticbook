@@ -51,15 +51,15 @@
                                 <td>{{$cons->descripcion}}</td>
 
                                 <td>
-<a href="{{route('modificargenero',['idgenero'=>$cons->idgenero])}}">
+                                    <a href="{{route('modificargenero',['idgenero'=>$cons->idgenero])}}">
                                     <button type="button" class="btn btn-primary ">Modificar</button>
-</a>
+                                    </a>
                                     @if($cons->deleted_at)
-                                    <a href="{{route('reactivagenero',['idgenero'=>$cons->idgenero])}}">
+                                    <a href="{{route('activagenero',['idgenero'=>$cons->idgenero])}}">
                                         <button type="button" class="btn btn-warning ">Activar</button>
                                     </a>
                                     <a href="{{route('borrargenero',['idgenero'=>$cons->idgenero])}}">
-                                        <button type="button" class="btn btn-primary ">Eliminar</button>
+                                        <button type="button" class="btn btn-danger ">Eliminar</button>
                                     </a>
                                     @else
                                     <a href="{{route('desactivagenero',['idgenero'=>$cons->idgenero])}}">
