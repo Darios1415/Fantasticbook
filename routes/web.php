@@ -4,6 +4,7 @@ use App\Http\Controllers\LibrosController;
 use  App\Http\Controllers\MunicipioController;
 use  App\Http\Controllers\AutorController;
 use  App\Http\Controllers\GenerosController;
+use  App\Http\Controllers\ProvedorController;
 
 
 /*
@@ -89,8 +90,7 @@ Route::get ('activarautor/{idau}',[AutorController::class,'activarautor'])->name
 
 
 //Proveedores
-<<<<<<< HEAD
-Route::resource('provedores', 'App\Http\Controllers\ProvedorController');
-=======
 Route::resource('proveedores', 'App\Http\Controllers\ProvedorController');
->>>>>>> marianita
+Route::get ('desactivaprovedor/{idpro}',[ProvedorController::class,'desactivaprovedor'])->name('desactivaprovedor');
+Route::get ('activarprovedor/{idpro}',[ProvedorController::class,'activarprovedor'])->name('activarprovedor');
+

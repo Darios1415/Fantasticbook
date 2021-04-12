@@ -18,15 +18,15 @@ class CreateProvedorsTable extends Migration
             $table->string('nombre', 25);
             $table->string('apellidoP', 25);
             $table->string('apellidoM', 25);
-            $table->string('Telefono', 25);
-            $table->string('Correo', 25);
-            $table->string('Estado', 25);
-            $table->string('Municipio', 25);
-            $table->string('Localidad', 25);
-            $table->string('Calle', 25);
-            $table->string('Numeroint', 25);
-            $table->string('Numeroext', 25);
-            $table->string('Foto');
+            $table->string('telefono', 25);
+            $table->string('correo', 25);
+            $table->string('estado', 25);
+            $table->string('municipio', 25);
+            $table->string('localidad', 25);
+            $table->string('calle', 25);
+            $table->string('numeroint', 25);
+            $table->string('numeroext', 25);
+            $table->string('foto');
             $table->timestamps();
 
         });
