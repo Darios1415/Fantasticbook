@@ -23,7 +23,7 @@
     <div class="card-header">
     <div class="table-responsive">
         <div class="btn-group w-100">
-            <a href="provedores/create"> 
+            <a href="proveedores/create"> 
             <span class="btn btn-success col fileinput-button">
                 <i class="fas fa-plus"></i>
                 <span>Agregar Provedor</span>
@@ -50,27 +50,27 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($provedores as $provedor)
+                @foreach ($proveedor as $provedor)
                 <tr>
-                <td><img src="/img/autor/{{$item->foto}}" width="100px" alt=""></td>
+                <td><img src="/img/provedor/{{$provedor->foto}}" width="100px" alt=""></td>
                 <td>{{$provedor->idpro}}</td>
                 <td>{{$provedor->nombre}} {{$provedor->apellidoP}} {{$provedor->apellidoM}}</td>
-                <td>{{$provedor->Telefono}}</td>
-                <td>{{$provedor->Correo}}</td>
-                <td>{{$provedor->Estado}}</td>
-                <td>{{$provedor->Municipio}}</td>
-                <td>{{$provedor->Calle}}</td>
-                
+                <td>{{$provedor->telefono}}</td>
+                <td>{{$provedor->correo}}</td>
+                <td>{{$provedor->estado}}</td>
+                <td>{{$provedor->municipio}}</td>
+                <td>{{$provedor->calle}}</td>
                 <td>
-                    <form action="{{route('autor.destroy',$item->idau)}}" method="POST" class="formulario-eliminar">   
+                    <form action="{{route('proveedores.destroy',$provedor->idpro)}}" method="POST" class="formulario-eliminar">   
                         @csrf
                         @method("DELETE")
-                        <a href="/autor/{{$item->idau}}/edit" class="btn btn-warning"><i class="material-icons">edit</i></a>
-                        @if($item->deleted_at)
-                        <a href="{{route('activarautor', $item->idau)}}" class="btn btn-warning"> <i class="material-icons">done</i></a>
+                        <a href="/proveedores/{{$provedor->idpro}}/edit" class="btn btn-warning"><i class="material-icons">edit</i></a>
+                        @if($provedor->deleted_at)
+                        <a href="{{route('activarprovedor', $provedor->idpro)}}" class="btn btn-warning"> <i class="material-icons">done</i></a>
+
                         <button type="submit" class="btn btn-secondary"><i class="material-icons">delete</i></button>
                         @else
-		                <a href="{{route('desactivaautor', $item->idau)}}" class="btn btn-danger"> <i class="material-icons">dangerous</i></a>
+		                <a href="{{route('desactivaprovedor', $provedor->idpro)}}" class="btn btn-danger"> <i class="material-icons">dangerous</i></a>
                         @endif
                        
             
@@ -111,5 +111,18 @@
     }
     });
   });
+    
     </script>
+@if (session('success') =='ok')
+<script>
+   Swal.fire({
+  position: '',
+  icon: 'success',
+  title: 'Provedor Creado',
+  showConfirmButton: false,
+  timer: 1500
+})
+</script>
+@endif
+
 @stop

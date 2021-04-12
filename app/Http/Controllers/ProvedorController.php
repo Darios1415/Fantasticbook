@@ -48,17 +48,17 @@ class ProvedorController extends Controller
         $proveedor->nombre=$request->nombre;
         $proveedor->apellidoP=$request->apellidoP;
         $proveedor->apellidoM=$request->apellidoM;
-        $proveedor->Telefono=$request->Telefono;
-        $proveedor->Correo=$request->Correo;
-        $proveedor->Estado_inter=$request->Estado;
-        $proveedor->Municipio=$request->Municipio;
-        $proveedor->Localidad=$request->Localidad;
-        $proveedor->Calle=$request->Calle;
-        $proveedor->Numeroint=$request->Numeroint;
-        $proveedor->Numeroext=$request->Numeroext;
+        $proveedor->telefono=$request->telefono;
+        $proveedor->correo=$request->correo;
+        $proveedor->estado=$request->estado;
+        $proveedor->municipio=$request->municipio;
+        $proveedor->localidad=$request->localidad;
+        $proveedor->calle=$request->calle;
+        $proveedor->numeroint=$request->numeroint;
+        $proveedor->numeroext=$request->numeroext;
         $proveedor->foto=$namefoto;
         $proveedor->save();
-        return redirect("/provedor")->with('success', 'ok');
+        return redirect("/proveedores")->with('success', 'ok');
     }
 
     /**
@@ -78,9 +78,10 @@ class ProvedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idpro)
     {
-        //
+        $proveedor=Provedor::findOrFail($idpro);
+        return view('Cruds.proveedor.edit')->with('proveedor', $proveedor);
     }
 
     /**
@@ -90,9 +91,48 @@ class ProvedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idpro)
     {
-        //
+
+         //return $request;
+        $proveedor=Provedor::findOrFail($idpro);
+        if(file_exists(public_path()."/img/provedor/".$proveedor->foto)){
+            if($request->hasFile('foto')){
+                unlink(public_path()."/img/provedor/".$proveedor->foto);
+                $foto=$request->foto;
+                $namefoto=uniqid().$foto->getClientOriginalName();
+                $foto->move(public_path()."/img/provedor/", $namefoto);
+                $proveedor->foto=$namefoto;
+            }else{
+                if($request->hasFile('foto')){
+                    $foto=$request->foto;
+                    $namefoto=uniqid().$foto->getClientOriginalName();
+                    $foto->move(public_path()."/img/provedor/", $namefoto);
+                    $proveedor->foto=$namefoto;
+                }
+            }
+        }else{
+            if($request->hasFile('foto')){
+                $foto=$request->foto;
+                $namefoto=uniqid().$foto->getClientOriginalName();
+                $foto->move(public_path()."/img/provedor/", $namefoto);
+                $proveedor->foto=$namefoto;
+            }
+        }
+        $proveedor= new Provedor();
+        $proveedor->nombre=$request->nombre;
+        $proveedor->apellidoP=$request->apellidoP;
+        $proveedor->apellidoM=$request->apellidoM;
+        $proveedor->telefono=$request->telefono;
+        $proveedor->correo=$request->correo;
+        $proveedor->estado=$request->estado;
+        $proveedor->municipio=$request->municipio;
+        $proveedor->localidad=$request->localidad;
+        $proveedor->calle=$request->calle;
+        $proveedor->numeroint=$request->numeroint;
+        $proveedor->numeroext=$request->numeroext;
+        $proveedor->save();
+        return redirect("/proveedores")->with('success', 'ok');
     }
 
     /**
@@ -101,8 +141,25 @@ class ProvedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function desactivaprovedor($idpro)
     {
-        //
+        $proveedor=Provedor::Find($idpro);
+        $proveedor->delete();
+        return redirect('proveedores');
+    }
+    public function activarprovedor($idpro)
+    {
+        $proveedor=Provedor::withTrashed()->where('idpro',$idpro)->restore();
+        return redirect('proveedores');
+    }
+
+    public function destroy($idpro)
+    {
+        $proveedor=Provedor::withTrashed()->find($idpro);
+        if(file_exists(public_path()."/img/provedor/".$proveedor->foto)){
+            unlink(public_path()."/img/provedor/".$proveedor->foto);
+            }
+            $proveedor->forceDelete();
+            return redirect('proveedores');
     }
 }
