@@ -28,6 +28,7 @@ class CreateProvedorsTable extends Migration
             $table->string('numeroext', 25);
             $table->string('foto');
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

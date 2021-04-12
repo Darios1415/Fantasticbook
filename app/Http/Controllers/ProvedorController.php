@@ -15,7 +15,7 @@ class ProvedorController extends Controller
     public function index()
     {
 
-        $proveedor= Provedor::all();
+        $proveedor=Provedor::withTrashed()->get();
         return view('Cruds.proveedor.index')->with('proveedor', $proveedor);
     }
 
@@ -93,8 +93,6 @@ class ProvedorController extends Controller
      */
     public function update(Request $request, $idpro)
     {
-
-         //return $request;
         $proveedor=Provedor::findOrFail($idpro);
         if(file_exists(public_path()."/img/provedor/".$proveedor->foto)){
             if($request->hasFile('foto')){
@@ -119,7 +117,6 @@ class ProvedorController extends Controller
                 $proveedor->foto=$namefoto;
             }
         }
-        $proveedor= new Provedor();
         $proveedor->nombre=$request->nombre;
         $proveedor->apellidoP=$request->apellidoP;
         $proveedor->apellidoM=$request->apellidoM;

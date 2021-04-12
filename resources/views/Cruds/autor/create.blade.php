@@ -134,6 +134,7 @@
 
 @section('js')
     <script> console.log('Hi!'); </script>
+    
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {

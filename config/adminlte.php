@@ -280,6 +280,10 @@ return [
                     'text' => 'Autor',
                     'url'  => 'autor',
                 ],
+                [
+                    'text' => 'Proveedores',
+                    'url'  => 'proveedores',
+                ],
             ],
         ],
         ['header' => 'labels'],
