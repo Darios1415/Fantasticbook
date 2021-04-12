@@ -5,6 +5,7 @@ use  App\Http\Controllers\MunicipioController;
 use  App\Http\Controllers\AutorController;
 use  App\Http\Controllers\GenerosController;
 use  App\Http\Controllers\ProvedorController;
+use  App\Http\Controllers\SucursaldController;
 
 
 /*
@@ -23,7 +24,14 @@ Route::get('/', function () {
 });
 
 //Sucursald
-Route::resource('sucursald','App\Http\Controllers\SucursaldController');
+Route::get ('sucursal',[SucursaldController::class,'index'])->name('index');
+Route::get ('altasuc',[SucursaldController::class,'create'])->name('altasuc');
+Route::post ('guardarsuc',[SucursaldController::class,'guardarsuc'])->name('guardarsuc');
+Route::get ('desactivasuc/{idsucur}',[SucursaldController::class,'desactivasuc'])->name('desactivasuc');
+Route::get ('activasuc/{idsucur}',[SucursaldController::class,'activasuc'])->name('activasuc');
+Route::get ('borrarsuc/{idsucur}',[SucursaldController::class,'borrarsuc'])->name('borrarsuc');
+Route::get ('modificarsuc/{idsucur}',[SucursaldController::class,'modificarsuc'])->name('modificarsuc');
+Route::post ('cambiossuc/{idsucur}',[SucursaldController::class,'update'])->name('cambiossuc');
 
 //usuario
 Route::resource('usuarios','App\Http\Controllers\UsuarioController');
@@ -52,6 +60,11 @@ Route::get ('reportelibros',[LibrosController::class,'reportelibros'])->name('re
 Route::get ('desactivalibro/{idlibro}',[LibrosController::class,'desactivalibro'])->name('desactivalibro');
 Route::get ('activarlibro/{idlibro}',[LibrosController::class,'activarlibro'])->name('activarlibro');
 Route::get ('borrarlibro/{idlibro}',[LibrosController::class,'borrarlibro'])->name('borrarlibro');
+
+Route::get ('modificalibro/{idlibro}',[LibrosController::class,'modificalibro'])->name('modificalibro');
+Route::post ('guardarcambiosL',[LibrosController::class,'guardacambiosL'])->name('guardacambiosL');
+
+
 Route::get ('eloquent',[LibrosController::class,'eloquent'])->name('eloquent');
 
 //municipio
@@ -60,12 +73,15 @@ Route::resource('municipios','App\Http\Controllers\MunicipioController');
 //genero
 Route::get ('reportegenero',[GenerosController::class,'reportegenero'])->name('reportegenero');
 Route::post ('guardargenero',[GenerosController::class,'guardargenero'])->name('guardargenero');
+Route::get ('modificasubgenero/{idsubgen}',[SubgenerosController::class,'modificasubgenero'])->name('modificasubgenero');
 Route::get ('altagenero',[GenerosController::class,'altagenero'])->name('altagenero');
+
 Route::get ('desactivagenero/{idgenero}',[GenerosController::class,'desactivagenero'])->name('desactivagenero');
-Route::get ('reactivagenero/{idgenero}',[GenerosController::class,'reactivagenero'])->name('reactivagenero');
+Route::get ('activagenero/{idgenero}',[GenerosController::class,'activagenero'])->name('activagenero');
 Route::get ('borrargenero/{idgenero}',[GenerosController::class,'borrargenero'])->name('borrargenero');
 Route::get ('modificargenero/{idgenero}',[GenerosController::class,'modificargenero'])->name('modificargenero');
-Route::post ('cambiosgenero/{idgenero}/edit',[GenerosController::class,'cambiosgenero'])->name('cambiosgenero');
+Route::post ('cambiosgenero/{idgenero}',[GenerosController::class,'cambiosgenero'])->name('cambiosgenero');
+
 
 //Sucursald 
 Route::get ('sucursald', function(){
@@ -93,4 +109,5 @@ Route::get ('activarautor/{idau}',[AutorController::class,'activarautor'])->name
 Route::resource('proveedores', 'App\Http\Controllers\ProvedorController');
 Route::get ('desactivaprovedor/{idpro}',[ProvedorController::class,'desactivaprovedor'])->name('desactivaprovedor');
 Route::get ('activarprovedor/{idpro}',[ProvedorController::class,'activarprovedor'])->name('activarprovedor');
+
 

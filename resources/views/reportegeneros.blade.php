@@ -6,6 +6,9 @@
 <div class="container">
     <h1><center>Reporte de Géneros</center></h1>
     <br>
+    @if(Session::has('mensaje'))
+    <div class="alert alert-success">{{Session::get('mensaje')}}</div>
+    @endif
     <span class="float-right">
         <a href="{{route('altagenero')}}">
             <button type="button" class="btn btn-primary">Alta de Géneros</button>
@@ -23,10 +26,12 @@
         <tbody>
             @foreach($consulta as $c)
             <tr>
-                <th scope="row">{{$c->idgen}}</th>
+                <th scope="row"><center>{{$c->idgen}}</center></th>
                 <td>{{$c->genero}}</td>
                 <td>
+                <a href="{{route('modificagenero',['idgen'=>$c->idgen])}}">
                     <button type="button" class="btn btn-warning">Editar</button>
+                </a>
                     @if($c->deleted_at)
                     <a href="{{route('activargenero',['idgen'=>$c->idgen])}}">
                         <button type="button" class="btn btn-success">activar</button>

@@ -134,7 +134,7 @@ class AutorController extends Controller
         $autor->sexo=$request->sexo;
         $autor->biografia=$request->biografia;
         $autor->save();
-        return redirect("/autor")->with('success', 'ok');
+        return redirect("/autor")->with('success', 'edit');
     }
 
     /**
@@ -148,12 +148,12 @@ class AutorController extends Controller
     {
         $autor=Autor::Find($idau);
         $autor->delete();
-        return redirect('autor');
+        return redirect('autor')->with('success', 'desactiver');
     }
     public function activarautor($idau)
     {
         $autor=Autor::withTrashed()->where('idau',$idau)->restore();
-        return redirect('autor');
+        return redirect('autor')->with('success', 'activer');
     }
 
     public function destroy($idau)

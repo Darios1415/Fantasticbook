@@ -9,7 +9,7 @@
 @section('content')
 
     <!-- Main content -->
-  <form action="{{route('guardarlibro')}}" method="POST">
+  <form action="{{route('guardarlibro')}}" method="POST" enctype="multipart/form-data">
     {{csrf_field()}}
     <section class="content">
       <div class="container-fluid">
@@ -126,37 +126,27 @@
                     <select name="idsubgen" id="idsubgen" class="form-control">
                       <option selected="">Elige un subgénero</option>
                       @foreach($subgeneros as $subgen)
-                      <option value="1">{{$subgen->subgenero}}</option>
+                      <option value="{{$subgen->idsubgen}}">{{$subgen->subgenero}}</option>
                       @endforeach
                     </select>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="InputFile">Archivo
+                    <label for="archivo">Archivo del libro:
                       @if($errors->first('archivo'))
-                      <p class='text-danger'>{{$errors->first('archivo')}}</p>
+                        <p class='text-danger'>{{$errors->first('archivo')}}</p>
                       @endif
                     </label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="archivo" id="archivo">
-                        <label class="custom-file-label" for="archivo">Selecciona el libro</label>
-                      </div>
-                    </div>
+                    <input type="file" class="form-control" name="archivo" id="archivo">
                   </div>
                   <div class="form-group col-md-6">
-                  <label for="InputFoto">Imágen
-                    @if($errors->first('foto'))
-                    <p class='text-danger'>{{$errors->first('foto')}}</p>
-                    @endif
-                  </label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="foto" id="foto">
-                        <label class="custom-file-label" for="foto">Selecciona imágen de portada</label>
-                      </div>
-                    </div>
+                    <label for="foto">Imgén del libro:
+                      @if($errors->first('foto'))
+                        <p class='text-danger'>{{$errors->first('foto')}}</p>
+                      @endif
+                    </label>
+                    <input type="file" class="form-control" name="foto" id="foto">
                   </div>
                 </div>
                 <div class="row">
